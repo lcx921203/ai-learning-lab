@@ -1,88 +1,144 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<meta name="theme-color" content="#F6F7FA" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="default" />
-<title>LearnMate · AI 学习成长助手</title>
-<style>
-:root{
-  --ink:#111318;--muted:#8A8E99;--line:#E9EBF0;--paper:#F6F7FA;
-  --blue:#9AB7FF;--blue2:#DCE7FF;--purple:#DE8AF4;--orange:#FF9B35;--soft:#FFFFFF;
-}
-*{box-sizing:border-box}html,body{margin:0;background:#EDEFF3;color:var(--ink);font-family:ui-rounded,"SF Pro Rounded","PingFang SC",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-button,input{font:inherit}.app{width:min(100%,430px);min-height:100dvh;margin:auto;background:var(--paper);padding:calc(18px + env(safe-area-inset-top)) 18px calc(96px + env(safe-area-inset-bottom));overflow:hidden;box-shadow:0 0 64px rgba(15,20,30,.12)}
-.top{display:flex;align-items:center;justify-content:space-between;gap:12px}.who{display:flex;align-items:center;gap:10px}.avatar{width:42px;height:42px;border-radius:50%;background:#CEE0FF;border:1px solid #D7DCE7;overflow:hidden}.avatar img{width:100%;height:100%;object-fit:cover}.who strong{font-size:15px;display:block;line-height:1.2}.who small{display:block;color:#777C88;font-size:11px;margin-top:3px}.top-actions{display:flex;gap:8px}.round{width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid #ECEEF2;display:grid;place-items:center;box-shadow:0 8px 22px rgba(16,19,24,.05)}
-.search{margin-top:18px;height:48px;border:1px solid #ECEEF2;background:#fff;border-radius:999px;display:flex;align-items:center;gap:10px;padding:0 15px;color:#A0A3AD;box-shadow:0 8px 22px rgba(16,19,24,.04)}
-.search span{font-size:13px;flex:1}.hero{margin-top:14px;background:linear-gradient(145deg,#A9C0FF 0%,#91AEFA 100%);min-height:205px;border-radius:28px;position:relative;overflow:hidden;padding:20px 18px;box-shadow:0 16px 36px rgba(83,110,180,.14)}
-.hero-copy{position:relative;z-index:3;width:61%}.hero .tag{display:inline-block;background:rgba(255,255,255,.58);border-radius:999px;padding:6px 10px;font-size:10px;font-weight:800}.hero h1{font-size:27px;line-height:1.08;letter-spacing:-.035em;margin:12px 0 7px;font-weight:950}.hero p{margin:0 0 14px;font-size:12px;line-height:1.55}.hero .cta{border:0;background:#111318;color:#fff;height:41px;padding:0 16px;border-radius:999px;font-weight:850;display:inline-flex;align-items:center;gap:12px;box-shadow:0 8px 18px rgba(17,19,24,.18)}
-.hero-avatar{position:absolute;right:-7px;bottom:-12px;width:47%;z-index:2;filter:contrast(1.04)}.hero-avatar img{width:100%;display:block}.doodle{position:absolute;font-family:"Marker Felt","Comic Sans MS",cursive;font-weight:700;z-index:4}.good{right:17px;top:13px;transform:rotate(7deg);font-size:12px}.spark1{right:20px;bottom:27px;font-size:22px}.spark2{left:58%;top:91px;font-size:18px}.scribble{position:absolute;left:58%;bottom:21px;width:34px;height:34px;border:2px solid #111;border-radius:50% 50% 48% 52%;transform:rotate(-12deg);opacity:.82}.scribble:after{content:"";position:absolute;width:14px;height:2px;background:#111;left:9px;bottom:-7px;transform:rotate(24deg)}
-.quick{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:14px 0 0}.quick button{border:0;background:transparent;padding:0;display:flex;flex-direction:column;align-items:center;gap:7px;color:#606571;font-size:9px}.qicon{width:40px;height:40px;border-radius:13px;background:#fff;display:grid;place-items:center;border:1px solid #ECEEF2}.quick button.active .qicon{background:#111318;color:#fff}.quick button.active{color:#111318;font-weight:800}.qicon svg{width:18px;height:18px}
-.section-title{margin:19px 2px 10px;display:flex;justify-content:space-between;align-items:end}.section-title h2{font-size:20px;margin:0;letter-spacing:-.02em}.section-title span{font-size:11px;color:#8E93A0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tile{min-height:154px;border-radius:24px;padding:15px;position:relative;overflow:hidden;border:0;text-align:left;color:#111318;box-shadow:0 10px 24px rgba(16,19,24,.04)}.tile.blue{background:linear-gradient(145deg,#A6C0FF,#C8D6FF)}.tile.purple{background:linear-gradient(145deg,#E8A0F8,#D77DEC)}.tile.orange{background:linear-gradient(145deg,#FFBD79,#FF9C3A)}.tile.white{background:#fff;border:1px solid #E8EAF0}.tile .eyebrow{font-size:10px;font-weight:900;letter-spacing:.08em}.tile h3{font-size:18px;line-height:1.12;margin:22px 0 6px;max-width:88%}.tile p{font-size:11px;line-height:1.45;margin:0;max-width:88%;color:#4E5360}.tile .arrow{position:absolute;left:15px;bottom:14px;width:28px;height:28px;border-radius:50%;background:#111318;color:#fff;display:grid;place-items:center;font-size:16px}.tile .art{position:absolute;right:8px;bottom:5px;width:78px;height:70px}.tile .art svg{width:100%;height:100%}.tile .num{position:absolute;right:13px;top:12px;border:1px solid rgba(17,19,24,.28);border-radius:999px;padding:5px 8px;font-size:9px;font-weight:900;background:rgba(255,255,255,.32)}
-.ai-card{margin-top:11px;background:#fff;border:1px solid #E8EAF0;border-radius:25px;padding:15px;display:flex;align-items:center;gap:12px;box-shadow:0 10px 24px rgba(16,19,24,.04)}.orb{width:72px;height:72px;border-radius:50%;flex:0 0 auto;background:radial-gradient(circle at 50% 50%,#171A24 0 24%,#293258 27%,#7B78EE 42%,#C889F3 58%,#9DBAFF 72%,rgba(157,186,255,.12) 78%);box-shadow:0 0 28px rgba(131,113,239,.34);position:relative;animation:float 4.5s ease-in-out infinite}.orb:before,.orb:after{content:"";position:absolute;top:31px;width:7px;height:14px;border-radius:999px;background:#fff}.orb:before{left:25px}.orb:after{right:25px}.ai-copy{flex:1}.ai-copy small{font-size:9px;color:#7D8290;font-weight:800;letter-spacing:.08em}.ai-copy h3{font-size:17px;margin:4px 0 4px}.ai-copy p{font-size:11px;line-height:1.45;margin:0;color:#777C88}.ai-go{width:36px;height:36px;border:0;border-radius:50%;background:#111318;color:#fff;font-size:18px}
-.quote{margin:18px 2px 0;font-family:"Marker Felt","Comic Sans MS",cursive;font-size:13px;transform:rotate(-1.5deg);color:#2B2E35}.quote b{font-weight:900}.nav{position:fixed;left:50%;bottom:max(10px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(calc(100% - 26px),402px);height:70px;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(15,18,24,.08);border-radius:24px;box-shadow:0 14px 32px rgba(16,19,24,.13);display:grid;grid-template-columns:repeat(5,1fr);padding:6px;z-index:30}.nav button{border:0;background:transparent;color:#9397A3;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px;font-size:9px;border-radius:18px}.nav button.active{background:#111318;color:#fff}.nav svg{width:20px;height:20px}.toast{position:fixed;left:50%;bottom:92px;transform:translate(-50%,15px);opacity:0;background:#111318;color:#fff;padding:10px 14px;border-radius:999px;font-size:11px;transition:.2s;z-index:99;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
-.tap{transition:transform .16s ease}.tap:active{transform:scale(.975)}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-@media(max-width:360px){.app{padding-left:14px;padding-right:14px}.hero h1{font-size:24px}.tile{min-height:146px}.hero{min-height:195px}}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#F5F6F8" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>LearnMate · AI 学习成长助手</title>
+  <link rel="stylesheet" href="./css/app.css" />
 </head>
 <body>
-<div class="app">
-  <header class="top">
-    <div class="who">
-      <div class="avatar"><img src="https://api.dicebear.com/10.x/open-peeps/svg?seed=LearnMateUser" alt="学习者头像"></div>
-      <div><strong>早上好，继续长本事 👋</strong><small>今天也别让好奇心闲着。</small></div>
-    </div>
-    <div class="top-actions"><button class="round tap" data-tip="学习日历稍后接入" aria-label="学习日历"><svg width="18" viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M8 3v4M16 3v4M4 10h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
-  </header>
+  <main class="app">
+    <header class="topbar">
+      <div class="hello">
+        <div class="avatar-wrap">
+          <img src="https://cdn.prod.website-files.com/5e51c674258ffe10d286d30a/5e535216550b76cb4af21e3d_peep-16.svg" alt="学习者头像">
+        </div>
+        <div>
+          <div class="hello-kicker">YOUR LEARNING DAY</div>
+          <h1>下午好，挑一块。</h1>
+        </div>
+      </div>
+      <button class="icon-btn tap" data-tip="学习日历">
+        <img src="./assets/icons/calendar.svg" alt="">
+      </button>
+    </header>
 
-  <div class="search tap" data-tip="搜索会接课程、项目和面试题"><svg width="18" viewBox="0 0 24 24" fill="none"><circle cx="10.5" cy="10.5" r="5.5" stroke="currentColor" stroke-width="2"/><path d="m15 15 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>搜点你真想搞懂的，比如「Write Ordering」</span><svg width="18" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M7 12h10M10 17h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+    <button class="search tap" data-tip="搜索课程、项目、面试题">
+      <img src="./assets/icons/search.svg" alt="">
+      <span>今天想搞懂什么？</span>
+      <span class="search-shortcut">⌘ K</span>
+    </button>
 
-  <section class="hero">
-    <div class="hero-copy"><span class="tag">AI 陪你 · 学得更深 · 走得更远</span><h1>今天想拆哪一块？</h1><p>学技术、做项目、练面试、规划下一步。<br>别收藏了，今天就动手。</p><button class="cta tap" data-tip="接下来进入你的个性学习路线">开始学习 <span>→</span></button></div>
-    <div class="hero-avatar"><img src="https://api.dicebear.com/10.x/open-peeps/svg?seed=CuriousBuilder&flip=horizontal" alt="手绘学习者插画"></div>
-    <span class="doodle good">Good ideas<br>Better you</span><span class="doodle spark1">✦</span><span class="doodle spark2">✧</span><i class="scribble"></i>
-  </section>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="hero-eyebrow">LEARN WITH AI</div>
+        <h2>今天想拆<br>哪一块？</h2>
+        <p>挑一块，今天搞懂它。</p>
+        <button class="primary tap" data-tip="进入个性学习路线">开始学习 <span>→</span></button>
+      </div>
 
-  <div class="quick">
-    <button class="active"><span class="qicon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="4" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="4" y="14" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="14" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.8"/></svg></span>全部</button>
-    <button class="tap" data-tip="技术学习"><span class="qicon"><svg viewBox="0 0 24 24" fill="none"><path d="m8 9-4 3 4 3M16 9l4 3-4 3M14 5l-4 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>技术学习</button>
-    <button class="tap" data-tip="项目实战"><span class="qicon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h6l2 2h8v10H4V7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>项目实战</button>
-    <button class="tap" data-tip="面试训练"><span class="qicon"><svg viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="12" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>面试训练</button>
-    <button class="tap" data-tip="职业发展"><span class="qicon"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19V10M12 19V5M19 19v-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>职业发展</button>
-  </div>
+      <div class="hero-art">
+        <img class="peep" src="https://cdn.prod.website-files.com/5e51c674258ffe10d286d30a/5e53570264109d16a7014c37_peep-46.svg" alt="Open Peeps 手绘学习者">
+      </div>
 
-  <div class="section-title"><div><span>别贪多，一次搞定一块。</span><h2>今天先从这里下手</h2></div><span>按你的节奏来 →</span></div>
+      <img class="doodle d1" src="./assets/doodles/star.svg" alt="">
+      <img class="doodle d2" src="./assets/doodles/eye.svg" alt="">
+      <img class="doodle d3" src="./assets/doodles/swoop.svg" alt="">
+      <div class="hero-note">GOOD IDEAS<br>BETTER YOU</div>
+    </section>
 
-  <section class="grid">
-    <button class="tile blue tap" data-tip="进入技术学习"><span class="eyebrow">CODE / 01</span><span class="num">技术学习</span><h3>先把代码写顺手</h3><p>从 Python 到工程实践，别只会看懂。</p><span class="arrow">→</span><span class="art"><svg viewBox="0 0 90 76" fill="none"><path d="M17 57h55l7 9H8l9-9Z" fill="#fff" stroke="#111318" stroke-width="2.6"/><rect x="23" y="15" width="48" height="42" rx="4" fill="#AFC6FF" stroke="#111318" stroke-width="2.6"/><path d="M35 32 29 37l6 5m24-10 6 5-6 5m-8-17-8 27" stroke="#111318" stroke-width="2.4" stroke-linecap="round"/></svg></span></button>
-    <button class="tile purple tap" data-tip="进入数据引擎路线"><span class="eyebrow">DATA / 02</span><span class="num">数据引擎</span><h3>去数据引擎里跑一圈</h3><p>Spark、Flink、Iceberg，别只认识名字。</p><span class="arrow">→</span><span class="art"><svg viewBox="0 0 90 76" fill="none"><path d="M21 28 43 16l22 12-22 12-22-12Z" fill="#fff" stroke="#111318" stroke-width="2.5"/><path d="m21 28 22 12 22-12v23L43 63 21 51V28Z" fill="#D98AF0" stroke="#111318" stroke-width="2.5"/><path d="M43 40v23" stroke="#111318" stroke-width="2.2"/></svg></span></button>
-    <button class="tile orange tap" data-tip="进入 AI 模拟面试"><span class="eyebrow">INTERVIEW / 03</span><span class="num">面试训练</span><h3>别背稿，练到能聊</h3><p>AI 追问项目细节，从真实场景开始。</p><span class="arrow">→</span><span class="art"><svg viewBox="0 0 90 76" fill="none"><rect x="36" y="10" width="18" height="36" rx="9" fill="#fff" stroke="#111318" stroke-width="2.7"/><path d="M27 34a18 18 0 0 0 36 0M45 52v14" stroke="#111318" stroke-width="2.7" stroke-linecap="round"/></svg></span></button>
-    <button class="tile white tap" data-tip="进入学习规划"><span class="eyebrow">NEXT / 04</span><span class="num">学习规划</span><h3>规划你的下一步</h3><p>知道今天该学什么，比收藏一百篇更重要。</p><span class="arrow">→</span><span class="art"><svg viewBox="0 0 90 76" fill="none"><path d="M18 62h58M24 56V42M42 56V29M60 56V18" stroke="#111318" stroke-width="3.2" stroke-linecap="round"/><circle cx="24" cy="38" r="3" fill="#9AB7FF"/><circle cx="42" cy="25" r="3" fill="#DE8AF4"/><circle cx="60" cy="14" r="3" fill="#FF9B35"/></svg></span></button>
-  </section>
+    <nav class="quick">
+      <button class="quick-item active">
+        <span class="quick-icon"><img src="./assets/icons/grid.svg" alt=""></span>
+        <span>全部</span>
+      </button>
+      <button class="quick-item tap" data-tip="技术学习">
+        <span class="quick-icon"><img src="./assets/icons/code.svg" alt=""></span>
+        <span>技术</span>
+      </button>
+      <button class="quick-item tap" data-tip="项目实战">
+        <span class="quick-icon"><img src="./assets/icons/folder.svg" alt=""></span>
+        <span>项目</span>
+      </button>
+      <button class="quick-item tap" data-tip="面试训练">
+        <span class="quick-icon"><img src="./assets/icons/mic.svg" alt=""></span>
+        <span>面试</span>
+      </button>
+      <button class="quick-item tap" data-tip="职业成长">
+        <span class="quick-icon"><img src="./assets/icons/chart.svg" alt=""></span>
+        <span>成长</span>
+      </button>
+    </nav>
 
-  <section class="ai-card tap" data-tip="AI 助手页：后续接语音、拍照、文件解析和学习规划"><div class="orb"></div><div class="ai-copy"><small>AI LEARNING COMPANION</small><h3>嗨，我一直在这里</h3><p>不是只回答问题，而是陪你一起把知识变成能力。</p></div><button class="ai-go">→</button></section>
-  <p class="quote"><b>小步走，也是在升级。</b> 今天搞懂一个，比收藏十个更值。</p>
-</div>
+    <section class="section-head">
+      <div>
+        <div class="microcopy">别贪多。</div>
+        <h3>今天先拿下一块</h3>
+      </div>
+      <button class="text-btn tap" data-tip="换一组推荐">换一组 ↻</button>
+    </section>
 
-<nav class="nav">
-  <button class="active"><svg viewBox="0 0 24 24" fill="none"><path d="m4 11 8-7 8 7v9h-5v-6H9v6H4v-9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span>首页</span></button>
-  <button class="tap" data-tip="学习"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5.5c3-1 5.5-.3 8 1.7 2.5-2 5-2.7 8-1.7v13c-3-.8-5.7-.2-8 1.8-2.3-2-5-2.6-8-1.8v-13Z" stroke="currentColor" stroke-width="1.8"/></svg><span>学习</span></button>
-  <button class="tap" data-tip="AI 助手"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/><path d="M9 11h.01M15 11h.01M9 15c1.8 1.2 4.2 1.2 6 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>AI 助手</span></button>
-  <button class="tap" data-tip="项目"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h6l2 2h8v10H4V7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span>项目</span></button>
-  <button class="tap" data-tip="我的"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.8"/><path d="M5.5 20c.8-4.3 3-6.2 6.5-6.2s5.7 1.9 6.5 6.2" stroke="currentColor" stroke-width="1.8"/></svg><span>我的</span></button>
-</nav>
-<div id="toast" class="toast"></div>
-<script>
-const toast=document.getElementById('toast');let timer;
-document.querySelectorAll('[data-tip]').forEach(el=>el.addEventListener('click',()=>{clearTimeout(timer);toast.textContent=el.dataset.tip;toast.classList.add('show');timer=setTimeout(()=>toast.classList.remove('show'),1500)}));
-</script>
-<!--
-Vector illustration source:
-DiceBear Open Peeps style (remix of Open Peeps by Pablo Stanley, CC0 1.0)
-https://www.dicebear.com/styles/open-peeps/
-SVG HTTP API is used directly; no raster crop is used.
--->
+    <section class="bento">
+      <button class="bento-card code-card tap" data-tip="进入代码学习">
+        <span class="eyebrow">CODE / 01</span>
+        <h4>代码先写顺。</h4>
+        <div class="tiny">Python → 工程实战</div>
+        <div class="circle-arrow">→</div>
+        <img class="card-art laptop" src="./assets/icons/laptop.svg" alt="">
+      </button>
+
+      <button class="bento-card data-card tap" data-tip="进入数据引擎路线">
+        <span class="eyebrow">DATA / 02</span>
+        <h4>去引擎里<br>跑一圈。</h4>
+        <div class="tiny">Spark · Flink · Iceberg</div>
+        <div class="circle-arrow">→</div>
+        <img class="card-art cube" src="./assets/icons/cube.svg" alt="">
+      </button>
+
+      <button class="bento-card interview-card tap" data-tip="开始 AI 模拟面试">
+        <span class="eyebrow">INTERVIEW / 03</span>
+        <h4>别背稿，<br>练到能聊。</h4>
+        <div class="circle-arrow">→</div>
+        <img class="card-art mic-art" src="./assets/icons/mic-big.svg" alt="">
+      </button>
+
+      <button class="bento-card plan-card tap" data-tip="打开学习规划">
+        <span class="eyebrow">NEXT / 04</span>
+        <h4>下一步，<br>别瞎猜。</h4>
+        <div class="tiny">让 AI 帮你排优先级</div>
+        <div class="circle-arrow">→</div>
+        <img class="card-art chart-art" src="./assets/icons/chart-big.svg" alt="">
+      </button>
+    </section>
+
+    <section class="ai-strip tap" data-tip="打开 AI 学习助手">
+      <div class="orb" aria-hidden="true"><i></i><i></i></div>
+      <div class="ai-copy">
+        <span>AI COMPANION</span>
+        <h4>嗨，我一直在。</h4>
+      </div>
+      <button class="round-dark">→</button>
+    </section>
+
+    <blockquote>
+      小步走，也是在升级。
+    </blockquote>
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="active">
+      <img src="./assets/icons/home.svg" alt=""><span>首页</span>
+    </button>
+    <button class="tap" data-tip="学习"><img src="./assets/icons/book.svg" alt=""><span>学习</span></button>
+    <button class="tap" data-tip="AI 助手"><img src="./assets/icons/ai.svg" alt=""><span>AI 助手</span></button>
+    <button class="tap" data-tip="项目"><img src="./assets/icons/folder.svg" alt=""><span>项目</span></button>
+    <button class="tap" data-tip="我的"><img src="./assets/icons/user.svg" alt=""><span>我的</span></button>
+  </nav>
+
+  <div id="toast" class="toast"></div>
+  <script src="./js/app.js"></script>
 </body>
 </html>
