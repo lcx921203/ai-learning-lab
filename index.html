@@ -7,7 +7,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <meta name="build-version" content="reference-v1.6-calm" />
+  <meta name="build-version" content="reference-v1.7-interaction" />
   <title>AI Learning Companion</title>
   <style>
     :root{
@@ -155,7 +155,7 @@
     .hero-progress{
       width:42px;height:42px;border-radius:50%;
       display:grid;place-items:center;
-      border:1.6px solid var(--ink);
+      border:1.4px solid rgba(17,17,22,.78);
       font-size:10px;font-weight:800;
       background:rgba(255,255,255,.18);
     }
@@ -359,10 +359,14 @@
     }
     .mini-icon svg{width:17px;height:17px}
     .mini-step{
-      width:37px;height:37px;border-radius:50%;
+      min-width:42px;height:27px;
+      padding:0 9px;
+      border-radius:999px;
       display:grid;place-items:center;
-      border:1.5px solid var(--ink);
-      font-size:9px;font-weight:800;
+      background:rgba(255,255,255,.30);
+      border:1px solid rgba(17,17,22,.16);
+      font-size:8px;font-weight:800;
+      white-space:nowrap;
     }
     .mini-card small{
       display:block;
@@ -373,7 +377,7 @@
     }
     .mini-card h3{
       margin:0 0 5px;
-      font-size:16px;line-height:1.1;
+      font-size:15px;line-height:1.12;
       letter-spacing:-.03em;
       font-weight:800;
     }
@@ -581,7 +585,7 @@
     }
     .range-tabs{
       margin-left:auto;
-      width:160px;
+      width:150px;
       height:31px;
       padding:3px;
       border-radius:999px;
@@ -607,104 +611,112 @@
     }
     .timeline{
       position:relative;
-      padding:2px 0 0;
+      padding:6px 0 2px;
+      min-height:176px;
     }
-    .timeline::before{
+    .timeline-grid{
+      position:absolute;
+      inset:4px 0 28px 0;
+      border-radius:18px;
+      background:
+        linear-gradient(to right, rgba(17,17,22,.06) 1px, transparent 1px) 0 0/20% 100%;
+      pointer-events:none;
+    }
+    .today-line{
+      position:absolute;
+      left:50%;
+      top:4px;
+      bottom:28px;
+      width:1px;
+      background:rgba(17,17,22,.22);
+      z-index:1;
+      pointer-events:none;
+    }
+    .today-line::before{
       content:"";
       position:absolute;
-      left:0;right:0;top:0;bottom:22px;
-      border-radius:14px;
-      background:
-        linear-gradient(to right, rgba(17,17,22,.055) 1px, transparent 1px) 0 0/20% 100%;
-      pointer-events:none;
+      left:50%;top:-2px;
+      transform:translateX(-50%);
+      width:7px;height:7px;border-radius:50%;
+      background:var(--ink);
+    }
+    .today-line::after{
+      content:"TODAY";
+      position:absolute;
+      left:50%;bottom:-20px;
+      transform:translateX(-50%);
+      font-size:6.5px;font-weight:800;
+      color:#767982;
+      letter-spacing:.06em;
     }
     .timeline-row{
       position:relative;
-      min-height:47px;
-      display:grid;
-      grid-template-columns:1fr;
-      align-items:center;
-      z-index:1;
-    }
-    .timeline-track{
-      position:relative;
       height:34px;
-      display:grid;
-      grid-template-columns:repeat(5,1fr);
-      align-items:center;
-      border-radius:999px;
-    }
-    .timeline-track::before{
-      content:"";
-      position:absolute;
-      left:0;right:0;top:50%;
-      height:9px;
-      transform:translateY(-50%);
-      border-radius:999px;
-      background:#EEF1F5;
+      z-index:2;
     }
     .timeline-bar{
-      --start:1;
-      --span:2;
-      grid-column:var(--start) / span var(--span);
-      position:relative;
-      z-index:2;
-      min-width:0;
+      --left:0%;
+      --width:60%;
+      position:absolute;
+      left:var(--left);
+      width:var(--width);
+      top:5px;
       height:24px;
       border-radius:999px;
       display:grid;
       grid-template-columns:auto minmax(0,1fr) auto;
       align-items:center;
-      gap:7px;
+      gap:6px;
       padding:0 9px 0 6px;
-      color:var(--ink);
-      transition:grid-column .30s cubic-bezier(.2,.8,.2,1),transform .18s ease;
-      cursor:pointer;
-      box-shadow:0 1px 0 rgba(17,17,22,.05);
+      min-width:0;
+      box-shadow:0 1px 0 rgba(17,17,22,.04);
+      transition:left .35s cubic-bezier(.2,.8,.2,1), width .35s cubic-bezier(.2,.8,.2,1), transform .18s ease;
     }
-    .timeline-bar:active{transform:scaleY(.91)}
+    .timeline-bar:active{transform:scale(.985)}
     .timeline-bar.black{background:var(--ink);color:#fff}
     .timeline-bar.orange{background:var(--orange)}
     .timeline-bar.blue{background:var(--blue)}
+    .timeline-bar.soft{
+      background:#DCE6FF;
+      color:#1B315A;
+    }
     .bar-state{
-      width:16px;height:16px;border-radius:50%;
+      width:15px;height:15px;border-radius:50%;
       display:grid;place-items:center;
       background:#fff;
       color:var(--ink);
       font-size:7px;font-weight:900;
       flex:none;
     }
-    .timeline-bar.blue .bar-state{
-      background:transparent;
-      border:1.4px solid #345EA7;
-      color:#345EA7;
+    .timeline-bar.blue .bar-state,
+    .timeline-bar.soft .bar-state{
+      background:rgba(255,255,255,.55);
+      color:#355EA8;
     }
     .bar-title{
       overflow:hidden;
       text-overflow:ellipsis;
       white-space:nowrap;
-      font-size:9px;
+      font-size:8.7px;
       font-weight:760;
       letter-spacing:-.01em;
     }
     .bar-meta{
-      font-size:7.5px;
+      font-size:7px;
       font-weight:800;
       white-space:nowrap;
-      opacity:.86;
-    }
-      to{opacity:1;transform:translateY(0) scale(1)}
-    }
-      70%,100%{transform:translateX(120%)}
+      opacity:.82;
     }
     .timeline-axis{
-      margin-top:3px;
+      position:absolute;
+      left:0;right:0;bottom:0;
+      padding-top:5px;
     }
     .axis-labels{
       display:grid;
       grid-template-columns:repeat(5,1fr);
       color:#9699A0;
-      font-size:7.5px;
+      font-size:7.3px;
       font-weight:650;
       text-align:center;
     }
@@ -800,10 +812,10 @@
     </label>
 
     <section class="hero hero-carousel" id="hero-carousel" aria-roledescription="carousel">
-      <article class="hero-slide is-active" data-slide="0" aria-label="1 / 3">
+      <article class="hero-slide is-active" data-slide="0" data-mode="tech" aria-controls="quick-start-content" aria-label="1 / 3">
         <div class="hero-top">
           <span class="hero-brand">◎</span>
-          <span class="hero-progress">2 / 3</span>
+          <span class="hero-progress" aria-label="第 1 张，共 3 张">1 / 3</span>
         </div>
         <div class="hero-copy">
           <p class="hero-kicker">TODAY'S LEARNING</p>
@@ -823,10 +835,10 @@
         </div>
       </article>
 
-      <article class="hero-slide" data-slide="1" aria-label="2 / 3">
+      <article class="hero-slide" data-slide="1" data-mode="project" aria-controls="quick-start-content" aria-label="2 / 3">
         <div class="hero-top">
           <span class="hero-brand">◇</span>
-          <span class="hero-progress">1 / 4</span>
+          <span class="hero-progress" aria-label="第 2 张，共 3 张">2 / 3</span>
         </div>
         <div class="hero-copy">
           <p class="hero-kicker">PROJECT PRACTICE</p>
@@ -846,10 +858,10 @@
         </div>
       </article>
 
-      <article class="hero-slide" data-slide="2" aria-label="3 / 3">
+      <article class="hero-slide" data-slide="2" data-mode="interview" aria-controls="quick-start-content" aria-label="3 / 3">
         <div class="hero-top">
           <span class="hero-brand">✦</span>
-          <span class="hero-progress">3 / 5</span>
+          <span class="hero-progress" aria-label="第 3 张，共 3 张">3 / 3</span>
         </div>
         <div class="hero-copy">
           <p class="hero-kicker">INTERVIEW READY</p>
@@ -891,40 +903,40 @@
       </button>
     </nav>
 
-    <section class="section">
+    <section class="section" id="quick-start-content" aria-live="polite">
       <div class="section-head">
         <div>
           <small>QUICK START</small>
           <h2>快速进入</h2>
         </div>
-        <a href="#">查看全部</a>
+        <a href="#" id="quick-start-all">查看全部</a>
       </div>
 
       <div class="two-cards">
-        <article class="mini-card pink">
+        <article class="mini-card pink" id="quick-card-a">
           <div class="mini-head">
-            <span class="mini-icon">
+            <span class="mini-icon" id="quick-icon-a">
               <svg viewBox="0 0 24 24"><path d="M5 5h14v14H5z"/><path d="M8 9h8M8 13h5"/></svg>
             </span>
-            <span class="mini-step">1 / 3</span>
+            <span class="mini-step" id="quick-status-a">继续学习</span>
           </div>
-          <small>TECH LEARNING</small>
-          <h3>组件 / 技术</h3>
-          <p>Python · Spark · Flink · Iceberg</p>
-          <a class="mini-link" href="#">继续 12 min →</a>
+          <small id="quick-kicker-a">TECH LEARNING</small>
+          <h3 id="quick-title-a">组件 / 技术</h3>
+          <p id="quick-desc-a">Python · Spark · Flink · Iceberg</p>
+          <a class="mini-link" id="quick-link-a" href="#">继续 · 12 min →</a>
         </article>
 
-        <article class="mini-card orange">
+        <article class="mini-card orange" id="quick-card-b">
           <div class="mini-head">
-            <span class="mini-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M5 20c.8-4 3-6 7-6s6.2 2 7 6"/></svg>
+            <span class="mini-icon" id="quick-icon-b">
+              <svg viewBox="0 0 24 24"><path d="M4 7h16v12H4z"/><path d="M8 7V4h8v3"/></svg>
             </span>
-            <span class="mini-step">2 / 4</span>
+            <span class="mini-step" id="quick-status-b">进行中</span>
           </div>
-          <small>PROJECT LAB</small>
-          <h3>项目学习</h3>
-          <p>源码 · 架构 · 难点 · 项目表达</p>
-          <a class="mini-link" href="#">进入项目 →</a>
+          <small id="quick-kicker-b">SOURCE READING</small>
+          <h3 id="quick-title-b">源码阅读</h3>
+          <p id="quick-desc-b">Router · Planner · Context</p>
+          <a class="mini-link" id="quick-link-b" href="#">继续上次位置 →</a>
         </article>
       </div>
     </section>
@@ -1003,34 +1015,39 @@
       </div>
 
       <div class="timeline" aria-label="学习路径时间轴">
+        <div class="timeline-grid" aria-hidden="true"></div>
+        <div class="today-line" aria-hidden="true"></div>
+
         <div class="timeline-row" data-task="python">
-          <div class="timeline-track">
-            <button class="timeline-bar black" type="button" style="--start:1;--span:3" aria-label="Python 集合与哈希，已完成">
-              <span class="bar-state">✓</span>
-              <span class="bar-title">Python 集合与哈希</span>
-              <span class="bar-meta">完成</span>
-            </button>
-          </div>
+          <button class="timeline-bar black" type="button" style="--left:0%;--width:56%" aria-label="Python 集合与哈希，已完成">
+            <span class="bar-state">✓</span>
+            <span class="bar-title">Python 集合与哈希</span>
+            <span class="bar-meta">完成</span>
+          </button>
         </div>
 
         <div class="timeline-row" data-task="agent">
-          <div class="timeline-track">
-            <button class="timeline-bar orange" type="button" style="--start:2;--span:4" aria-label="Data Agent 架构，当前进行中">
-              <span class="bar-state">▶</span>
-              <span class="bar-title">Data Agent 架构</span>
-              <span class="bar-meta">现在</span><span>I</span><span>✦</span></span>
-            </button>
-          </div>
+          <button class="timeline-bar orange" type="button" style="--left:16%;--width:70%" aria-label="Data Agent 架构，当前进行中">
+            <span class="bar-state">▶</span>
+            <span class="bar-title">Data Agent 架构</span>
+            <span class="bar-meta">现在</span>
+          </button>
+        </div>
+
+        <div class="timeline-row" data-task="semantic">
+          <button class="timeline-bar soft" type="button" style="--left:4%;--width:46%" aria-label="语义层与指标，待复习">
+            <span class="bar-state">•</span>
+            <span class="bar-title">语义层与指标</span>
+            <span class="bar-meta">复习</span>
+          </button>
         </div>
 
         <div class="timeline-row" data-task="interview">
-          <div class="timeline-track">
-            <button class="timeline-bar blue" type="button" style="--start:3;--span:3" aria-label="面试项目表达，下一步">
-              <span class="bar-state"></span>
-              <span class="bar-title">面试项目表达</span>
-              <span class="bar-meta">下一步</span>
-            </button>
-          </div>
+          <button class="timeline-bar blue" type="button" style="--left:48%;--width:48%" aria-label="面试项目表达，下一步">
+            <span class="bar-state"></span>
+            <span class="bar-title">面试项目表达</span>
+            <span class="bar-meta">下一步</span>
+          </button>
         </div>
 
         <div class="timeline-axis">
@@ -1064,11 +1081,8 @@
   </nav>
 
   <script>
-    document.querySelectorAll('.mode').forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        document.querySelectorAll('.mode').forEach(x=>x.classList.remove('is-active'));
-        btn.classList.add('is-active');
-      });
+    // Tabs are synchronized with the hero carousel and Quick Start.
+    const modeButtons = Array.from(document.querySelectorAll('.mode'));
     });
     document.querySelectorAll('a[href="#"]').forEach(a=>{
       a.addEventListener('click',e=>e.preventDefault());
@@ -1081,22 +1095,42 @@
       day: {
         name: '日视图',
         labels: ['09:00','11:00','13:00','15:00','17:00'],
-        bars: { python:[1,3], agent:[2,4], interview:[3,3] }
+        bars: {
+          python:['0%','54%'],
+          agent:['18%','66%'],
+          semantic:['4%','42%'],
+          interview:['52%','44%']
+        }
       },
       week: {
         name: '周视图',
         labels: ['周一','周二','周三','周四','周五'],
-        bars: { python:[1,3], agent:[2,4], interview:[3,3] }
+        bars: {
+          python:['0%','56%'],
+          agent:['16%','70%'],
+          semantic:['4%','46%'],
+          interview:['48%','48%']
+        }
       },
       month: {
         name: '月视图',
         labels: ['W1','W2','W3','W4','W5'],
-        bars: { python:[1,3], agent:[2,4], interview:[3,3] }
+        bars: {
+          python:['0%','42%'],
+          agent:['22%','68%'],
+          semantic:['6%','54%'],
+          interview:['58%','38%']
+        }
       },
       year: {
         name: '年视图',
         labels: ['Q1','Q2','Q3','Q4','年度'],
-        bars: { python:[1,3], agent:[2,4], interview:[3,3] }
+        bars: {
+          python:['0%','34%'],
+          agent:['18%','64%'],
+          semantic:['4%','48%'],
+          interview:['55%','41%']
+        }
       }
     };
 
@@ -1121,8 +1155,8 @@
         Object.entries(view.bars).forEach(([task, position]) => {
           const bar = document.querySelector(`.timeline-row[data-task="${task}"] .timeline-bar`);
           if (!bar) return;
-          bar.style.setProperty('--start', position[0]);
-          bar.style.setProperty('--span', position[1]);
+          bar.style.setProperty('--left', position[0]);
+          bar.style.setProperty('--width', position[1]);
         });
 
         if (rangeName) rangeName.textContent = view.name;
@@ -1139,6 +1173,78 @@
     });
 
   
+    
+    const quickStartByMode = {
+      tech: {
+        a: {
+          status:'继续学习',
+          kicker:'TECH LEARNING',
+          title:'组件 / 技术',
+          desc:'Python · Spark · Flink · Iceberg',
+          link:'继续 · 12 min →'
+        },
+        b: {
+          status:'进行中',
+          kicker:'SOURCE READING',
+          title:'源码阅读',
+          desc:'Router · Planner · Context',
+          link:'继续上次位置 →'
+        }
+      },
+      project: {
+        a: {
+          status:'当前项目',
+          kicker:'PROJECT LAB',
+          title:'AI-Native Data Platform',
+          desc:'架构 · Agent · 治理 · Semantic Layer',
+          link:'进入项目 →'
+        },
+        b: {
+          status:'待完善',
+          kicker:'PROJECT STORY',
+          title:'项目表达',
+          desc:'难点 · 取舍 · 价值 · 面试 Story',
+          link:'继续整理 →'
+        }
+      },
+      interview: {
+        a: {
+          status:'今日练习',
+          kicker:'INTERVIEW',
+          title:'高频问答',
+          desc:'数据湖 · Agent · 语义层 · CDC',
+          link:'开始练习 →'
+        },
+        b: {
+          status:'准备中',
+          kicker:'RESUME',
+          title:'简历 / 项目表达',
+          desc:'项目亮点 · STAR · 技术深度',
+          link:'继续优化 →'
+        }
+      }
+    };
+
+    const updateQuickStart = mode => {
+      const cfg = quickStartByMode[mode];
+      if (!cfg) return;
+
+      ['a','b'].forEach(key => {
+        document.getElementById(`quick-status-${key}`).textContent = cfg[key].status;
+        document.getElementById(`quick-kicker-${key}`).textContent = cfg[key].kicker;
+        document.getElementById(`quick-title-${key}`).textContent = cfg[key].title;
+        document.getElementById(`quick-desc-${key}`).textContent = cfg[key].desc;
+        document.getElementById(`quick-link-${key}`).textContent = cfg[key].link;
+      });
+    };
+
+    const setActiveMode = mode => {
+      modeButtons.forEach(button => {
+        button.classList.toggle('is-active', button.dataset.mode === mode);
+      });
+      updateQuickStart(mode);
+    };
+
     // Hero carousel: auto rotate + tap dots + swipe
     (() => {
       const carousel = document.getElementById('hero-carousel');
@@ -1169,6 +1275,7 @@
 
         dots.forEach((dot, i) => dot.classList.toggle('is-active', i === next));
         index = next;
+        setActiveMode(target.dataset.mode || 'tech');
       };
 
       const next = () => show((index + 1) % slides.length, 1);
@@ -1176,7 +1283,7 @@
 
       const start = () => {
         stop();
-        timer = setInterval(next, 10000);
+        timer = setInterval(next, 5000);
       };
       const stop = () => {
         if (timer) clearInterval(timer);
@@ -1189,6 +1296,21 @@
           start();
         });
       });
+
+
+      modeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const targetIndex = slides.findIndex(slide => slide.dataset.mode === button.dataset.mode);
+          if (targetIndex >= 0) {
+            show(targetIndex, targetIndex >= index ? 1 : -1);
+            setActiveMode(button.dataset.mode);
+            start();
+          }
+        });
+      });
+
+      // Initialize Quick Start from the first active mode.
+      setActiveMode(slides[index].dataset.mode || 'tech');
 
       carousel.addEventListener('touchstart', e => {
         touchStartX = e.touches[0].clientX;
