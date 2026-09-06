@@ -1,49 +1,44 @@
-# AI Learning Companion — Reference V1.5
+# AI Learning Companion — Reference V1.6
 
-## V1.5：首页动效与 Roadmap 精修
+本版针对 V1.5 真机反馈做“降速 + 减法”。
 
-### Hero 轮播
-- 3 张首页主卡：今日学习 / 项目实战 / 模拟面试
-- 每 5.6 秒自动轮播
-- 支持底部指示点点击切换
-- 支持手机左右滑切换
-- 文字、进度、插画同步切换
-- 插画有 4px 以内的轻微漂浮动效
-- 用户触摸时自动暂停轮播，结束后恢复
+## 动效调整
+- Hero 自动轮播：5.6 秒 → 10 秒
+- Hero 切换动画：约 0.7 秒，更柔和
+- 删除 Hero 人物持续漂浮
+- 删除首屏错峰入场
+- 删除 Roadmap 流光
+- 删除 Roadmap 头像弹入
+- AI Orb 保留，但改为极慢：
+  - 外层旋转约 20 秒
+  - 内层旋转约 16 秒
+  - 呼吸约 9–10 秒
+  - 幅度明显降低
+- 保留按钮按压反馈，不让页面到处持续运动
 
-### AI Assistant
-- Orb 增加缓慢旋转、呼吸、亮度变化
-- 增加非常轻的径向光晕
-- 滚出可视区域时暂停动画，降低电量消耗
-- 保留 prefers-reduced-motion 无动画兼容
+## 插画调整
+均为 Open Doodles 官方 PNG，不使用 SVG：
+- 今日学习：reading.png
+- 项目实战：sitting-reading.png
+- 模拟面试：levitate.png
 
-### Roadmap
-- 去掉独立左侧任务标题列
-- 任务名、状态直接进入彩色路径条
-- 黑色：已完成
-- 橙色：当前进行中
-- 蓝色：下一步
-- 当前任务条有极轻的流光
-- 当前节点头像堆叠弹入
-- 日 / 周 / 月 / 年切换继续保留真实交互
-- 时间轴更接近参考图，而不是传统 Gantt
+插画仍直接融入蓝色 Hero，不增加白色硬裁切框。
 
-### 微交互
-- 首屏首次进入做轻微 stagger
-- 卡片、按钮、导航按下为 0.975 scale
-- 不给普通文字和列表添加持续动画
-
-### 底部导航
-- 增加页面底部安全区
-- Roadmap 与固定导航之间增加真实可视空间
-- 减少固定导航遮挡内容
-
-## 插画
-继续统一使用 Open Doodles PNG，不使用 SVG：
-- https://www.opendoodles.com/
+## Roadmap 调整
+- 删除当前任务头像堆叠
+- 去掉流光动画
+- Roadmap 左右内边距进一步缩小，时间轴更宽
+- 路径条加高、字号略增
+- 默认路径跨度改为：
+  - Python：约 60%
+  - Data Agent：约 80%
+  - 面试项目表达：约 60%
+- 标题直接放在路径条内部
+- 日 / 周 / 月 / 年切换继续可交互
+- 网格线更淡，更接近参考图的轻量 Roadmap
 
 ## 使用
 直接覆盖仓库根目录 `index.html`。
 
 ## Commit
-feat(ui): add hero carousel ai orb motion and refine roadmap interactions
+refactor(ui): calm motion widen roadmap and refresh hero illustrations

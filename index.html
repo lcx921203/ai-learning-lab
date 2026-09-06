@@ -7,7 +7,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <meta name="build-version" content="reference-v1.5-motion" />
+  <meta name="build-version" content="reference-v1.6-calm" />
   <title>AI Learning Companion</title>
   <style>
     :root{
@@ -190,7 +190,7 @@
     }
     .hero-visual{
       position:absolute;
-      right:-8px;bottom:-6px;
+      right:-5px;bottom:-5px;
       width:176px;height:146px;
       z-index:1;
       display:flex;
@@ -218,7 +218,7 @@
     }
     .hero-visual img{
       position:relative;z-index:2;
-      width:174px;height:144px;
+      width:182px;height:148px;
       object-fit:contain;
       object-position:right bottom;
       filter:saturate(.90) contrast(.98);
@@ -251,8 +251,8 @@
       transform:translateX(18px) scale(.992);
       pointer-events:none;
       transition:
-        opacity .42s ease,
-        transform .48s cubic-bezier(.2,.8,.2,1);
+        opacity .70s ease,
+        transform .74s cubic-bezier(.22,.72,.24,1);
     }
     .hero-slide.is-active{
       position:relative;
@@ -264,11 +264,6 @@
       opacity:0;
       transform:translateX(-14px) scale(.994);
     }
-    .hero-visual img{
-      animation:heroFloat 5.6s ease-in-out infinite;
-    }
-    @keyframes heroFloat{
-      0%,100%{transform:translateY(0)}
       50%{transform:translateY(-4px)}
     }
     .hero-dots{
@@ -490,17 +485,17 @@
     }
     .orb::before{
       inset:5px;
-      animation:orbOuter 8s linear infinite, orbBreathe 3.8s ease-in-out infinite;
+      animation:orbOuter 20s linear infinite, orbBreathe 9s ease-in-out infinite;
     }
     .orb::after{
       inset:13px;
       opacity:.76;
-      animation:orbInner 6.5s linear infinite reverse, orbBreathe 4.6s ease-in-out infinite reverse;
+      animation:orbInner 16s linear infinite reverse, orbBreathe 10s ease-in-out infinite reverse;
     }
     .orb span{
       inset:22px;
       opacity:.56;
-      animation:orbCore 5.2s ease-in-out infinite;
+      animation:orbCore 11s ease-in-out infinite;
     }
     .orb-glow{
       position:absolute;
@@ -509,7 +504,7 @@
       background:radial-gradient(circle, rgba(255,255,255,.30) 0%, rgba(255,255,255,.10) 38%, transparent 72%);
       filter:blur(6px);
       z-index:-1;
-      animation:orbGlow 3.6s ease-in-out infinite;
+      animation:orbGlow 10s ease-in-out infinite;
     }
     @keyframes orbOuter{
       to{transform:rotate(360deg)}
@@ -518,16 +513,16 @@
       to{transform:rotate(360deg)}
     }
     @keyframes orbBreathe{
-      0%,100%{scale:.96;filter:brightness(.94)}
-      50%{scale:1.06;filter:brightness(1.12)}
+      0%,100%{scale:.99;filter:brightness(.99)}
+      50%{scale:1.025;filter:brightness(1.045)}
     }
     @keyframes orbCore{
-      0%,100%{transform:rotate(-8deg) scale(.92);opacity:.45}
-      50%{transform:rotate(12deg) scale(1.12);opacity:.72}
+      0%,100%{transform:rotate(-4deg) scale(.98);opacity:.50}
+      50%{transform:rotate(6deg) scale(1.035);opacity:.64}
     }
     @keyframes orbGlow{
-      0%,100%{opacity:.42;transform:scale(.92)}
-      50%{opacity:.88;transform:scale(1.08)}
+      0%,100%{opacity:.38;transform:scale(.98)}
+      50%{opacity:.62;transform:scale(1.035)}
     }
     .orb::before{inset:7px;transform:rotate(14deg)}
     .orb::after{inset:15px;transform:rotate(-23deg);opacity:.78}
@@ -536,7 +531,7 @@
     .roadmap{
       background:#fff;
       border-radius:26px;
-      padding:16px 14px 14px;
+      padding:15px 10px 14px;
       margin-top:18px;
       overflow:hidden;
     }
@@ -586,7 +581,7 @@
     }
     .range-tabs{
       margin-left:auto;
-      width:174px;
+      width:160px;
       height:31px;
       padding:3px;
       border-radius:999px;
@@ -620,12 +615,12 @@
       left:0;right:0;top:0;bottom:22px;
       border-radius:14px;
       background:
-        linear-gradient(to right, rgba(17,17,22,.08) 1px, transparent 1px) 0 0/20% 100%;
+        linear-gradient(to right, rgba(17,17,22,.055) 1px, transparent 1px) 0 0/20% 100%;
       pointer-events:none;
     }
     .timeline-row{
       position:relative;
-      min-height:42px;
+      min-height:47px;
       display:grid;
       grid-template-columns:1fr;
       align-items:center;
@@ -633,7 +628,7 @@
     }
     .timeline-track{
       position:relative;
-      height:30px;
+      height:34px;
       display:grid;
       grid-template-columns:repeat(5,1fr);
       align-items:center;
@@ -643,7 +638,7 @@
       content:"";
       position:absolute;
       left:0;right:0;top:50%;
-      height:8px;
+      height:9px;
       transform:translateY(-50%);
       border-radius:999px;
       background:#EEF1F5;
@@ -655,13 +650,13 @@
       position:relative;
       z-index:2;
       min-width:0;
-      height:20px;
+      height:24px;
       border-radius:999px;
       display:grid;
       grid-template-columns:auto minmax(0,1fr) auto;
       align-items:center;
       gap:7px;
-      padding:0 7px 0 5px;
+      padding:0 9px 0 6px;
       color:var(--ink);
       transition:grid-column .30s cubic-bezier(.2,.8,.2,1),transform .18s ease;
       cursor:pointer;
@@ -672,7 +667,7 @@
     .timeline-bar.orange{background:var(--orange)}
     .timeline-bar.blue{background:var(--blue)}
     .bar-state{
-      width:14px;height:14px;border-radius:50%;
+      width:16px;height:16px;border-radius:50%;
       display:grid;place-items:center;
       background:#fff;
       color:var(--ink);
@@ -688,55 +683,18 @@
       overflow:hidden;
       text-overflow:ellipsis;
       white-space:nowrap;
-      font-size:8px;
+      font-size:9px;
       font-weight:760;
       letter-spacing:-.01em;
     }
     .bar-meta{
-      font-size:7px;
+      font-size:7.5px;
       font-weight:800;
       white-space:nowrap;
       opacity:.86;
     }
-    .avatar-trail{
-      position:absolute;
-      left:calc(100% + 5px);
-      top:50%;
-      transform:translateY(-50%);
-      display:flex;
-      align-items:center;
-      pointer-events:none;
-    }
-    .avatar-trail span{
-      width:18px;height:18px;border-radius:50%;
-      display:grid;place-items:center;
-      margin-left:-5px;
-      border:2px solid #fff;
-      font-size:6px;
-      font-weight:900;
-      color:#111;
-      box-shadow:0 1px 3px rgba(17,17,22,.10);
-      animation:avatarPop .34s ease both;
-    }
-    .avatar-trail span:nth-child(1){background:var(--blue);animation-delay:.02s}
-    .avatar-trail span:nth-child(2){background:var(--pink);animation-delay:.08s}
-    .avatar-trail span:nth-child(3){background:var(--orange);animation-delay:.14s}
-    @keyframes avatarPop{
-      from{opacity:0;transform:translateY(3px) scale(.78)}
       to{opacity:1;transform:translateY(0) scale(1)}
     }
-    .timeline-bar.orange::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      border-radius:inherit;
-      background:linear-gradient(90deg, transparent 0%, rgba(255,255,255,.0) 35%, rgba(255,255,255,.38) 50%, rgba(255,255,255,.0) 65%, transparent 100%);
-      transform:translateX(-120%);
-      animation:currentFlow 3.8s ease-in-out infinite;
-      pointer-events:none;
-    }
-    @keyframes currentFlow{
-      0%,45%{transform:translateX(-120%)}
       70%,100%{transform:translateX(120%)}
     }
     .timeline-axis{
@@ -755,21 +713,6 @@
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
-    }
-    .roadmap-hint{
-      margin-top:9px;
-      padding-top:9px;
-      border-top:1px solid var(--line);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      font-size:7.5px;
-      color:#94979F;
-    }
-    .roadmap-hint strong{
-      color:#575A62;
-      font-weight:750;
     }
 
     .bottom-nav{
@@ -804,19 +747,6 @@
       background:var(--ink);color:#fff;
       font-size:17px;
     }
-
-    
-    .enter{
-      opacity:0;
-      transform:translateY(10px);
-      animation:enterUp .46s cubic-bezier(.2,.8,.2,1) forwards;
-    }
-    .enter[data-delay="1"]{animation-delay:.05s}
-    .enter[data-delay="2"]{animation-delay:.10s}
-    .enter[data-delay="3"]{animation-delay:.16s}
-    .enter[data-delay="4"]{animation-delay:.22s}
-    @keyframes enterUp{
-      to{opacity:1;transform:translateY(0)}
     }
     .mini-card,.course-row,.mode,.ask,.hero-cta,.nav-ai{
       transition:transform .18s ease, box-shadow .18s ease;
@@ -835,7 +765,7 @@
     }
     @media (prefers-reduced-motion:reduce){
       html{scroll-behavior:auto}
-      .hero-visual img,.orb::before,.orb::after,.orb span,.orb-glow,.timeline-bar.orange::after,.avatar-trail span,.enter{
+      .hero-visual img,.orb::before,.orb::after,.orb span,.orb-glow{
         animation:none!important;
       }
       .hero-slide{transition:none}
@@ -845,7 +775,7 @@
 </head>
 <body>
   <main class="app">
-    <header class="topbar enter" data-delay="1">
+    <header class="topbar">
       <div class="avatar" aria-label="学习者头像">
         <img
           src="https://opendoodles.s3-us-west-1.amazonaws.com/selfie.png"
@@ -863,13 +793,13 @@
       </button>
     </header>
 
-    <label class="search enter" data-delay="2">
+    <label class="search">
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
       <input placeholder="搜知识、项目或面试题" />
       <span>AI SEARCH</span>
     </label>
 
-    <section class="hero hero-carousel enter" data-delay="3" id="hero-carousel" aria-roledescription="carousel">
+    <section class="hero hero-carousel" id="hero-carousel" aria-roledescription="carousel">
       <article class="hero-slide is-active" data-slide="0" aria-label="1 / 3">
         <div class="hero-top">
           <span class="hero-brand">◎</span>
@@ -883,7 +813,7 @@
         </div>
         <div class="hero-visual" aria-label="学习插画">
           <img
-            src="https://opendoodles.s3-us-west-1.amazonaws.com/sitting-reading.png"
+            src="https://opendoodles.s3-us-west-1.amazonaws.com/reading.png"
             alt="Open Doodles 阅读学习人物插画"
             referrerpolicy="no-referrer"
           />
@@ -906,7 +836,7 @@
         </div>
         <div class="hero-visual" aria-label="项目插画">
           <img
-            src="https://opendoodles.s3-us-west-1.amazonaws.com/reading.png"
+            src="https://opendoodles.s3-us-west-1.amazonaws.com/sitting-reading.png"
             alt="Open Doodles 项目学习人物插画"
             referrerpolicy="no-referrer"
           />
@@ -929,7 +859,7 @@
         </div>
         <div class="hero-visual" aria-label="面试插画">
           <img
-            src="https://opendoodles.s3-us-west-1.amazonaws.com/reading-side.png"
+            src="https://opendoodles.s3-us-west-1.amazonaws.com/levitate.png"
             alt="Open Doodles 面试学习人物插画"
             referrerpolicy="no-referrer"
           />
@@ -946,7 +876,7 @@
       </div>
     </section>
 
-    <nav class="mode-tabs enter" data-delay="4" aria-label="学习模式">
+    <nav class="mode-tabs" aria-label="学习模式">
       <button class="mode is-active" data-mode="tech">
         <svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg>
         技术
@@ -1075,7 +1005,7 @@
       <div class="timeline" aria-label="学习路径时间轴">
         <div class="timeline-row" data-task="python">
           <div class="timeline-track">
-            <button class="timeline-bar black" type="button" style="--start:1;--span:2" aria-label="Python 集合与哈希，已完成">
+            <button class="timeline-bar black" type="button" style="--start:1;--span:3" aria-label="Python 集合与哈希，已完成">
               <span class="bar-state">✓</span>
               <span class="bar-title">Python 集合与哈希</span>
               <span class="bar-meta">完成</span>
@@ -1085,18 +1015,17 @@
 
         <div class="timeline-row" data-task="agent">
           <div class="timeline-track">
-            <button class="timeline-bar orange" type="button" style="--start:2;--span:2" aria-label="Data Agent 架构，当前进行中">
+            <button class="timeline-bar orange" type="button" style="--start:2;--span:4" aria-label="Data Agent 架构，当前进行中">
               <span class="bar-state">▶</span>
               <span class="bar-title">Data Agent 架构</span>
-              <span class="bar-meta">现在</span>
-              <span class="avatar-trail" aria-hidden="true"><span>A</span><span>I</span><span>✦</span></span>
+              <span class="bar-meta">现在</span><span>I</span><span>✦</span></span>
             </button>
           </div>
         </div>
 
         <div class="timeline-row" data-task="interview">
           <div class="timeline-track">
-            <button class="timeline-bar blue" type="button" style="--start:4;--span:2" aria-label="面试项目表达，下一步">
+            <button class="timeline-bar blue" type="button" style="--start:3;--span:3" aria-label="面试项目表达，下一步">
               <span class="bar-state"></span>
               <span class="bar-title">面试项目表达</span>
               <span class="bar-meta">下一步</span>
@@ -1109,11 +1038,6 @@
             <span>周一</span><span>周二</span><span>周三</span><span>周四</span><span>周五</span>
           </div>
         </div>
-      </div>
-
-      <div class="roadmap-hint">
-        <span>点击任务条可进入对应学习内容</span>
-        <strong id="roadmap-range-name">周视图</strong>
       </div>
     </section>
     <div class="nav-safe-spacer" aria-hidden="true"></div>
@@ -1157,22 +1081,22 @@
       day: {
         name: '日视图',
         labels: ['09:00','11:00','13:00','15:00','17:00'],
-        bars: { python:[1,2], agent:[2,3], interview:[4,2] }
+        bars: { python:[1,3], agent:[2,4], interview:[3,3] }
       },
       week: {
         name: '周视图',
         labels: ['周一','周二','周三','周四','周五'],
-        bars: { python:[1,2], agent:[2,2], interview:[4,2] }
+        bars: { python:[1,3], agent:[2,4], interview:[3,3] }
       },
       month: {
         name: '月视图',
         labels: ['W1','W2','W3','W4','W5'],
-        bars: { python:[1,2], agent:[2,3], interview:[4,2] }
+        bars: { python:[1,3], agent:[2,4], interview:[3,3] }
       },
       year: {
         name: '年视图',
         labels: ['Q1','Q2','Q3','Q4','年度'],
-        bars: { python:[1,2], agent:[2,2], interview:[3,2] }
+        bars: { python:[1,3], agent:[2,4], interview:[3,3] }
       }
     };
 
@@ -1201,7 +1125,7 @@
           bar.style.setProperty('--span', position[1]);
         });
 
-        rangeName.textContent = view.name;
+        if (rangeName) rangeName.textContent = view.name;
       });
     });
 
@@ -1241,7 +1165,7 @@
           target.style.transform = '';
         });
 
-        setTimeout(() => current.classList.remove('is-leaving'), 520);
+        setTimeout(() => current.classList.remove('is-leaving'), 780);
 
         dots.forEach((dot, i) => dot.classList.toggle('is-active', i === next));
         index = next;
@@ -1252,7 +1176,7 @@
 
       const start = () => {
         stop();
-        timer = setInterval(next, 5600);
+        timer = setInterval(next, 10000);
       };
       const stop = () => {
         if (timer) clearInterval(timer);
