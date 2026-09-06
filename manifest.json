@@ -1,0 +1,22 @@
+{
+  "README.md": {
+    "bytes": 791,
+    "sha256": "ec6422d8ac4bf3553278532088b86de20556b0944b3cbf62b9e4ad32c46665be"
+  },
+  "assets/hero-learner.svg": {
+    "bytes": 1437,
+    "sha256": "aaa0a34fe2840df890a5b9d39a25b9dd0af8d94ee7d8c6f7e074e66c9ea78b61"
+  },
+  "css/app.css": {
+    "bytes": 12313,
+    "sha256": "3b92e724259b7235860303d70d200ee3deabee7402335d319ac456c3fec28cd3"
+  },
+  "index.html": {
+    "bytes": 9401,
+    "sha256": "0ed85b15c57059431d4bc46a82236e54982b3d63e4554e9609fabf7114fe3c1e"
+  },
+  "js/app.js": {
+    "bytes": 646,
+    "sha256": "a5ca4441275f0015a3e97645abf936bc04354fd05db4c525629e805fdd2d1121"
+  }
+}

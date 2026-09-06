@@ -2,137 +2,244 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#F5F6F8" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <title>LearnMate · AI 学习成长助手</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#F3F4F7" />
+  <meta name="color-scheme" content="light" />
+  <meta name="description" content="AI 驱动的个人学习应用：首页视觉重构 V1" />
+  <title>AI Learning Companion</title>
   <link rel="stylesheet" href="./css/app.css" />
 </head>
 <body>
-  <main class="app">
+  <main class="app-shell">
     <header class="topbar">
-      <div class="hello">
-        <div class="avatar-wrap">
-          <img src="https://cdn.prod.website-files.com/5e51c674258ffe10d286d30a/5e535216550b76cb4af21e3d_peep-16.svg" alt="学习者头像">
-        </div>
-        <div>
-          <div class="hello-kicker">YOUR LEARNING DAY</div>
-          <h1>下午好，挑一块。</h1>
-        </div>
+      <button class="avatar-button" aria-label="打开个人主页">
+        <span class="avatar-face">祁</span>
+      </button>
+      <div class="brand-block">
+        <span class="eyebrow">AI LEARNING COMPANION</span>
+        <strong>Learn • Build • Interview</strong>
       </div>
-      <button class="icon-btn tap" data-tip="学习日历">
-        <img src="./assets/icons/calendar.svg" alt="">
+      <button class="icon-button" aria-label="打开通知">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+          <path d="M10 21h4"/>
+        </svg>
+        <span class="notification-dot"></span>
       </button>
     </header>
 
-    <button class="search tap" data-tip="搜索课程、项目、面试题">
-      <img src="./assets/icons/search.svg" alt="">
-      <span>今天想搞懂什么？</span>
-      <span class="search-shortcut">⌘ K</span>
-    </button>
+    <section class="hero-card" aria-labelledby="hero-title">
+      <div class="hero-meta">
+        <span class="round-mark">◎</span>
+        <span>YOUR LEARNING DAY</span>
+        <span class="hero-count">2 / 3</span>
+      </div>
 
-    <section class="hero">
       <div class="hero-copy">
-        <div class="hero-eyebrow">LEARN WITH AI</div>
-        <h2>今天想拆<br>哪一块？</h2>
-        <p>挑一块，今天搞懂它。</p>
-        <button class="primary tap" data-tip="进入个性学习路线">开始学习 <span>→</span></button>
+        <p class="hero-kicker">继续今天的学习</p>
+        <h1 id="hero-title">把复杂知识，<br>学得更轻一点。</h1>
+        <p class="hero-sub">从 Python、数据平台，到项目实战和面试表达，AI 陪你一步一步往前走。</p>
+        <a href="#tracks" class="primary-pill">继续学习 <span>→</span></a>
       </div>
 
-      <div class="hero-art">
-        <img class="peep" src="https://cdn.prod.website-files.com/5e51c674258ffe10d286d30a/5e53570264109d16a7014c37_peep-46.svg" alt="Open Peeps 手绘学习者">
-      </div>
+      <img class="hero-illustration" src="./assets/hero-learner.svg" alt="" aria-hidden="true" />
 
-      <img class="doodle d1" src="./assets/doodles/star.svg" alt="">
-      <img class="doodle d2" src="./assets/doodles/eye.svg" alt="">
-      <img class="doodle d3" src="./assets/doodles/swoop.svg" alt="">
-      <div class="hero-note">GOOD IDEAS<br>BETTER YOU</div>
+      <div class="hero-doodles" aria-hidden="true">
+        <span>✦</span><span>⌁</span><span>+</span><span>◇</span>
+      </div>
     </section>
 
-    <nav class="quick">
-      <button class="quick-item active">
-        <span class="quick-icon"><img src="./assets/icons/grid.svg" alt=""></span>
-        <span>全部</span>
+    <nav class="mode-tabs" aria-label="学习模式">
+      <button class="mode-tab is-active" data-mode="logic">
+        <span class="tab-symbol">⌘</span> 技术
       </button>
-      <button class="quick-item tap" data-tip="技术学习">
-        <span class="quick-icon"><img src="./assets/icons/code.svg" alt=""></span>
-        <span>技术</span>
+      <button class="mode-tab" data-mode="project">
+        <span class="tab-symbol">◉</span> 项目
       </button>
-      <button class="quick-item tap" data-tip="项目实战">
-        <span class="quick-icon"><img src="./assets/icons/folder.svg" alt=""></span>
-        <span>项目</span>
-      </button>
-      <button class="quick-item tap" data-tip="面试训练">
-        <span class="quick-icon"><img src="./assets/icons/mic.svg" alt=""></span>
-        <span>面试</span>
-      </button>
-      <button class="quick-item tap" data-tip="职业成长">
-        <span class="quick-icon"><img src="./assets/icons/chart.svg" alt=""></span>
-        <span>成长</span>
+      <button class="mode-tab" data-mode="focus">
+        <span class="tab-symbol">◎</span> 面试
       </button>
     </nav>
 
-    <section class="section-head">
-      <h3>今天先拿下一块</h3>
-      <button class="text-btn tap" data-tip="换一组推荐">换一组 ↻</button>
-    </section>
-
-    <section class="bento reference-grid">
-      <button class="learn-card blue-card tap" data-tip="进入代码学习">
-        <div class="card-copy">
-          <h4>先把代码<br>写顺手</h4>
+    <section class="section-block" id="tracks">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">CURRENT PATHS</span>
+          <h2>正在进行</h2>
         </div>
-        <img class="scene scene-code" src="./assets/illustrations/code-scene.svg" alt="">
-      </button>
-
-      <button class="learn-card purple-card tap" data-tip="进入数据引擎路线">
-        <div class="card-copy">
-          <h4>去数据引擎里<br>跑一圈</h4>
-        </div>
-        <img class="scene scene-data" src="./assets/illustrations/data-scene.svg" alt="">
-      </button>
-
-      <button class="learn-card orange-card tap" data-tip="开始 AI 模拟面试">
-        <div class="card-copy">
-          <h4>别背稿，<br>练到能聊</h4>
-        </div>
-        <img class="scene scene-interview" src="./assets/illustrations/interview-scene.svg" alt="">
-      </button>
-
-      <button class="learn-card white-card tap" data-tip="打开学习规划">
-        <div class="card-copy">
-          <h4>规划你的<br>下一步</h4>
-        </div>
-        <img class="scene scene-plan" src="./assets/illustrations/plan-scene.svg" alt="">
-      </button>
-    </section>
-
-    <section class="ai-strip tap" data-tip="打开 AI 学习助手">
-      <div class="orb" aria-hidden="true"><i></i><i></i></div>
-      <div class="ai-copy">
-        <span>AI COMPANION</span>
-        <h4>嗨，我一直在。</h4>
+        <button class="circle-link" aria-label="查看全部">↗</button>
       </div>
-      <button class="round-dark">→</button>
+
+      <div class="feature-grid">
+        <article class="feature-card feature-card--pink">
+          <div class="feature-top">
+            <span class="black-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg>
+            </span>
+            <span class="progress-ring">1 / 3</span>
+          </div>
+          <span class="card-label">TECH LEARNING</span>
+          <h3>数据工程<br>知识地图</h3>
+          <p>Python · Spark · Flink · Iceberg</p>
+          <a href="#" class="mini-link">继续 12 min →</a>
+          <span class="card-doodle">⌗</span>
+        </article>
+
+        <article class="feature-card feature-card--orange">
+          <div class="feature-top">
+            <span class="black-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3"/><path d="M5 20c.8-4 3-6 7-6s6.2 2 7 6"/></svg>
+            </span>
+            <span class="progress-ring">2 / 4</span>
+          </div>
+          <span class="card-label">PROJECT LAB</span>
+          <h3>Data Agent<br>项目实战</h3>
+          <p>架构 · Agent · 治理 · 面试故事</p>
+          <a href="#" class="mini-link">进入项目 →</a>
+          <span class="card-doodle">⌁</span>
+        </article>
+      </div>
     </section>
 
-    <blockquote>
-      小步走，也是在升级。
-    </blockquote>
+    <section class="section-block editorial-panel">
+      <div class="section-head section-head--tight">
+        <div>
+          <span class="eyebrow">PICK YOUR NEXT CURIOSITY</span>
+          <h2>下一站</h2>
+        </div>
+      </div>
+
+      <div class="editorial-list">
+        <a class="editorial-row" href="#">
+          <span class="row-no">01</span>
+          <span class="row-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7M14 3l-4 18"/></svg>
+          </span>
+          <span class="row-copy">
+            <strong>组件 / 技术学习</strong>
+            <small>Python、Spark、Flink、Iceberg、dbt…</small>
+          </span>
+          <span class="row-arrow">→</span>
+        </a>
+
+        <a class="editorial-row" href="#">
+          <span class="row-no">02</span>
+          <span class="row-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v12H4z"/><path d="M8 7V4h8v3M8 12h8"/></svg>
+          </span>
+          <span class="row-copy">
+            <strong>项目学习</strong>
+            <small>从架构理解，到源码、难点与项目表达</small>
+          </span>
+          <span class="row-arrow">→</span>
+        </a>
+
+        <a class="editorial-row" href="#">
+          <span class="row-no">03</span>
+          <span class="row-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v11H9l-4 4z"/><path d="M8 9h8M8 12h5"/></svg>
+          </span>
+          <span class="row-copy">
+            <strong>面试 / 简历</strong>
+            <small>高频问答、项目 Story、简历措辞与模拟面试</small>
+          </span>
+          <span class="row-arrow">→</span>
+        </a>
+
+        <a class="editorial-row" href="#">
+          <span class="row-no">04</span>
+          <span class="row-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M18 16l.8 2.2L21 19l-2.2.8L18 22l-.8-2.2L15 19l2.2-.8z"/></svg>
+          </span>
+          <span class="row-copy">
+            <strong>AI 问答</strong>
+            <small>围绕你的学习上下文继续追问，不从零开始</small>
+          </span>
+          <span class="row-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="ai-card">
+      <div class="ai-card-head">
+        <div class="avatar-stack" aria-hidden="true">
+          <span>A</span><span>I</span><span>✦</span>
+        </div>
+        <button class="sliders" aria-label="AI 设置">
+          <svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+        </button>
+      </div>
+      <div class="ai-orb" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <p class="ai-question">今天想继续学什么？</p>
+      <div class="ai-actions">
+        <button class="ai-action">拍题</button>
+        <button class="ai-mic" aria-label="语音提问">
+          <svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+        </button>
+        <button class="ai-action">问答</button>
+      </div>
+    </section>
+
+    <section class="roadmap-block">
+      <div class="section-head section-head--tight">
+        <div>
+          <span class="eyebrow">ROADMAP</span>
+          <h2>本周路径</h2>
+        </div>
+        <span class="week-tag">WEEK 36</span>
+      </div>
+
+      <div class="roadmap">
+        <div class="roadmap-line roadmap-line--black" style="--w:78%">
+          <span class="roadmap-dot"></span>
+          <strong>Python 集合与哈希</strong>
+          <small>完成</small>
+        </div>
+        <div class="roadmap-line roadmap-line--orange" style="--w:92%">
+          <span class="roadmap-dot"></span>
+          <strong>Data Agent 架构</strong>
+          <small>现在</small>
+        </div>
+        <div class="roadmap-line roadmap-line--blue" style="--w:64%">
+          <span class="roadmap-dot"></span>
+          <strong>面试项目表达</strong>
+          <small>下一步</small>
+        </div>
+      </div>
+
+      <div class="week-days" aria-label="本周">
+        <span>MON</span><span>TUE</span><span class="today">WED</span><span>THU</span><span>FRI</span>
+      </div>
+    </section>
+
+    <footer class="footer-note">
+      <strong>Small steps.<br>Big progress.</strong>
+      <span>CURIOUS<br>BY DESIGN</span>
+    </footer>
   </main>
 
-  <nav class="bottom-nav">
-    <button class="active">
-      <img src="./assets/icons/home.svg" alt=""><span>首页</span>
-    </button>
-    <button class="tap" data-tip="学习"><img src="./assets/icons/book.svg" alt=""><span>学习</span></button>
-    <button class="tap" data-tip="AI 助手"><img src="./assets/icons/ai.svg" alt=""><span>AI 助手</span></button>
-    <button class="tap" data-tip="项目"><img src="./assets/icons/folder.svg" alt=""><span>项目</span></button>
-    <button class="tap" data-tip="我的"><img src="./assets/icons/user.svg" alt=""><span>我的</span></button>
+  <nav class="bottom-nav" aria-label="主导航">
+    <a class="nav-item is-active" href="#">
+      <svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9H6v-6h12"/></svg>
+      <span>首页</span>
+    </a>
+    <a class="nav-item" href="#tracks">
+      <svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8"/></svg>
+      <span>学习</span>
+    </a>
+    <button class="nav-ai" aria-label="打开 AI 助手">✦</button>
+    <a class="nav-item" href="#">
+      <svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg>
+      <span>项目</span>
+    </a>
+    <a class="nav-item" href="#">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M5 20c.8-4 3-6 7-6s6.2 2 7 6"/></svg>
+      <span>我的</span>
+    </a>
   </nav>
 
-  <div id="toast" class="toast"></div>
   <script src="./js/app.js"></script>
 </body>
 </html>
