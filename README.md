@@ -1,51 +1,75 @@
-# AI Learning Companion — V1.7
+# AI Learning Companion — V1.8
 
-## 这版解决四个“意义不清”的问题
+这版不是继续堆视觉，而是把“视觉规范”和“交互语义”分开。
 
-### 1. Hero 轮播数字
-之前 2/3、3/5 表达的是内容进度，和轮播混在一起会造成跳跃。
-现在统一为真正的轮播位置：
-- 1 / 3
-- 2 / 3
-- 3 / 3
+## 交互语义
 
-自动轮播恢复到 5 秒。
+### Hero
+Hero 是独立的 Featured Carousel（重点推荐轮播）。
+- 3 张
+- 右上角固定 1/3、2/3、3/3
+- 5 秒自动轮播
+- 支持左右滑
+- 支持底部圆点点按
+- Hero 不再自动改变下面的 Tab 内容
 
-### 2. 技术 / 项目 / 面试 Tab
-现在三个 Tab 有真实语义：
-- 技术：技术学习模式
-- 项目：项目实战模式
-- 面试：面试准备模式
+### 技术 / 项目 / 面试
+三个 Tab 是“首页内容分类筛选”，不是 Hero 页码。
 
-点击 Tab 会：
-1. 切换到对应 Hero
-2. 同步 Tab 高亮
-3. 同步更新 Quick Start 内容
+点击 Tab 会同时改变：
+1. Tab 高亮
+2. Tab 下方的上下文提示
+3. Quick Start 两张卡
+4. My Courses 三条课程内容
 
-Hero 自动轮播时，Tab 与 Quick Start 也会一起同步。
+#### 技术
+- Python 集合与哈希
+- Data Agent 源码
+- 数据工程 / Python 工程课程
 
-### 3. Quick Start
-删除没有解释的 1/3、2/4。
-改为有业务意义的状态：
-- 继续学习
-- 进行中
-- 当前项目
-- 待完善
-- 今日练习
-- 准备中
+#### 项目
+- AI-Native Data Platform
+- Audit Window Calibration
+- 项目架构 / 难点复盘
 
-Quick Start 的两张卡会跟随“技术 / 项目 / 面试”自动变更内容。
+#### 面试
+- 高频技术问答
+- 项目表达
+- 模拟面试 / 项目题库 / 简历优化
 
-### 4. Roadmap
-不是简单把原来的条拉长，而是重做结构：
-- 取消每行全宽底轨道
-- 改成更接近参考图的错位横向路径
-- 4 条不同起点 / 不同长度的学习路径
-- 标题直接写在路径内
-- 增加中间 Today 时间标记
-- 网格线更淡
+这样用户点击 Tab 后，会明确看到“整个内容区域已经进入哪个模式”。
+
+## Quick Start
+删除“1/3、2/4”这类没有业务解释的数字。
+状态只保留有意义的信息：
+- 12 MIN
+- 上次
+- 当前
+- 下一步
+- 8 题
+- Story
+
+状态胶囊去掉灰色描边，避免脏边。
+
+## AI Assistant
+彻底删除 Orb / 光晕 / 呼吸动画。
+改用 Open Doodles PNG 插画填充视觉留白。
+AI 区域保持静态，只保留“问 AI”操作。
+
+## Roadmap
+- 背景由纯白改为淡蓝灰 `#E9EEF7`
+- 保留错位时间路径
 - 无头像
-- 日 / 周 / 月 / 年继续可切换
+- 无流光
+- 日 / 周 / 月 / 年可切换
+- 交互只做必要的短反馈
+
+## 视觉原则
+1. 颜色：冷灰底 + 蓝主色 + 粉 / 橙功能色 + 黑视觉锚点
+2. 排版：大标题有力量，小字克制、有个性，不做无意义装饰
+3. 插画：优先 Open Doodles PNG，卡片空时用于丰富构图，不使用矢量 SVG
+4. 动效：只为状态变化和反馈服务，不做持续炫技动画
+5. 交互：每个可点元素必须有明确语义和结果
 
 ## Commit
-refactor(ui): clarify tabs quick start carousel and rebuild roadmap layout
+refactor(ui): clarify interaction semantics and replace ai motion with illustration
