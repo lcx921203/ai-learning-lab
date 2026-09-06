@@ -7,7 +7,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <meta name="build-version" content="reference-v1.2" />
+  <meta name="build-version" content="reference-v1.4-roadmap" />
   <title>AI Learning Companion</title>
   <style>
     :root{
@@ -49,7 +49,7 @@
     .app{
       width:min(100%,480px);
       margin:0 auto;
-      padding:18px 18px calc(96px + var(--safe-bottom));
+      padding:18px 18px calc(88px + var(--safe-bottom));
     }
 
     .topbar{
@@ -61,11 +61,26 @@
     }
     .avatar{
       width:44px;height:44px;border-radius:50%;
-      display:grid;place-items:center;
-      background:#23A6D7;
-      color:#fff;
-      font-size:13px;font-weight:800;
-      box-shadow:0 0 0 5px rgba(255,255,255,.92);
+      overflow:hidden;
+      position:relative;
+      background:var(--blue-soft);
+      box-shadow:0 0 0 4px rgba(255,255,255,.96), inset 0 0 0 1px rgba(17,17,22,.05);
+    }
+    .avatar::after{
+      content:"";
+      position:absolute;inset:auto -8px -14px 7px;
+      height:28px;border-radius:50%;
+      background:rgba(222,139,234,.52);
+      z-index:0;
+    }
+    .avatar img{
+      position:relative;z-index:1;
+      width:132%;height:132%;
+      display:block;
+      object-fit:contain;
+      object-position:center;
+      transform:translate(-12%,-9%) scale(1.34);
+      transform-origin:center;
     }
     .hello small{
       display:block;
@@ -121,7 +136,7 @@
     .hero{
       position:relative;
       overflow:hidden;
-      min-height:174px;
+      min-height:164px;
       border-radius:var(--radius-lg);
       background:var(--blue);
       padding:18px;
@@ -147,7 +162,7 @@
     .hero-copy{
       position:relative;z-index:2;
       margin-top:12px;
-      width:62%;
+      width:60%;
     }
     .hero-kicker{
       margin:0 0 4px;
@@ -175,24 +190,42 @@
     }
     .hero-visual{
       position:absolute;
-      right:-8px;bottom:-12px;
-      width:134px;height:134px;
-      border-radius:50% 50% 42% 58% / 46% 42% 58% 54%;
-      overflow:hidden;
-      border:5px solid rgba(255,255,255,.48);
-      background:#fff;
-      transform:rotate(-4deg);
+      right:-8px;bottom:-6px;
+      width:176px;height:146px;
+      z-index:1;
+      display:flex;
+      align-items:flex-end;
+      justify-content:flex-end;
+      pointer-events:none;
+    }
+    .hero-visual::before{
+      content:"";
+      position:absolute;
+      right:5px;bottom:8px;
+      width:142px;height:112px;
+      border-radius:46% 54% 60% 40% / 58% 43% 57% 42%;
+      background:rgba(255,255,255,.18);
+      transform:rotate(-9deg);
+    }
+    .hero-visual::after{
+      content:"";
+      position:absolute;
+      right:58px;bottom:18px;
+      width:68px;height:78px;
+      border-radius:50%;
+      background:rgba(222,139,234,.18);
+      transform:rotate(18deg);
     }
     .hero-visual img{
-      width:100%;height:100%;
-      object-fit:cover;
-      object-position:center 52%;
-      transform:scale(1.22) rotate(4deg);
-      filter:saturate(.88) contrast(.96);
+      position:relative;z-index:2;
+      width:174px;height:144px;
+      object-fit:contain;
+      object-position:right bottom;
+      filter:saturate(.90) contrast(.98);
     }
     .hero-bubbles{
       position:absolute;
-      right:92px;bottom:16px;
+      right:136px;bottom:12px;
       display:flex;
       z-index:3;
     }
@@ -260,7 +293,7 @@
       gap:10px;
     }
     .mini-card{
-      min-height:168px;
+      min-height:156px;
       border-radius:24px;
       padding:14px;
       position:relative;
@@ -270,7 +303,7 @@
     .mini-card.orange{background:var(--orange)}
     .mini-head{
       display:flex;align-items:center;justify-content:space-between;
-      margin-bottom:26px;
+      margin-bottom:20px;
     }
     .mini-icon{
       width:36px;height:36px;border-radius:50%;
@@ -293,7 +326,7 @@
     }
     .mini-card h3{
       margin:0 0 5px;
-      font-size:17px;line-height:1.08;
+      font-size:16px;line-height:1.1;
       letter-spacing:-.03em;
       font-weight:800;
     }
@@ -313,9 +346,9 @@
       display:grid;gap:9px;
     }
     .course-row{
-      min-height:70px;
+      min-height:66px;
       padding:10px 11px;
-      border-radius:22px;
+      border-radius:20px;
       background:#fff;
       display:grid;
       grid-template-columns:44px 1fr 34px;
@@ -361,7 +394,7 @@
 
     .ai-strip{
       margin-top:18px;
-      min-height:118px;
+      min-height:108px;
       border-radius:26px;
       background:var(--blue);
       padding:15px;
@@ -390,7 +423,7 @@
       font-size:9px;font-weight:750;
     }
     .orb{
-      width:84px;height:84px;
+      width:76px;height:76px;
       position:relative;
       display:grid;place-items:center;
     }
@@ -407,38 +440,238 @@
     .roadmap{
       background:#fff;
       border-radius:26px;
-      padding:16px;
+      padding:16px 14px 14px;
       margin-top:18px;
+      overflow:hidden;
     }
     .roadmap-head{
-      display:flex;justify-content:space-between;align-items:flex-end;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:10px;
       margin-bottom:12px;
     }
-    .roadmap-head h3{
-      margin:3px 0 0;
-      font-size:18px;font-weight:800;letter-spacing:-.03em;
+    .roadmap-title small{
+      display:block;
+      font-size:8px;
+      color:#92959D;
+      font-weight:750;
+      letter-spacing:.08em;
+      margin-bottom:4px;
     }
-    .roadmap-head span{
-      font-size:9px;font-weight:750;color:#7E8189;
+    .roadmap-title-line{
+      display:flex;
+      align-items:center;
+      gap:8px;
     }
-    .path{
-      height:34px;border-radius:999px;
-      display:flex;align-items:center;justify-content:space-between;
-      padding:0 12px 0 10px;
-      margin-top:8px;
-      font-size:9px;font-weight:700;
+    .roadmap-title h3{
+      margin:0;
+      font-size:18px;
+      font-weight:800;
+      letter-spacing:-.03em;
     }
-    .path.black{background:#111;color:#fff}
-    .path.orange{background:var(--orange)}
-    .path.blue{background:var(--blue-soft)}
-    .path-left{
-      display:flex;align-items:center;gap:8px;
+    .week-badge{
+      display:inline-flex;
+      align-items:center;
+      height:24px;
+      padding:0 9px;
+      border-radius:999px;
+      background:#F1F2F4;
+      font-size:8px;
+      font-weight:800;
+      letter-spacing:.03em;
+      color:#61646C;
+    }
+    .roadmap-link{
+      font-size:8px;
+      color:#7E8189;
+      font-weight:700;
+      white-space:nowrap;
+    }
+    .range-tabs{
+      margin-left:auto;
+      width:174px;
+      height:31px;
+      padding:3px;
+      border-radius:999px;
+      background:#F1F2F4;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:2px;
+      margin-bottom:12px;
+    }
+    .range-tab{
+      height:25px;
+      border-radius:999px;
+      background:transparent;
+      color:#858890;
+      font-size:8px;
+      font-weight:750;
+      transition:background .18s ease,color .18s ease,transform .18s ease;
+    }
+    .range-tab:active{transform:scale(.96)}
+    .range-tab.is-active{
+      background:var(--ink);
+      color:#fff;
+    }
+    .timeline{
+      position:relative;
+      padding:2px 0 0;
+    }
+    .timeline::before{
+      content:"";
+      position:absolute;
+      left:104px;right:0;top:0;bottom:22px;
+      border-radius:14px;
+      background:
+        linear-gradient(to right, rgba(17,17,22,.08) 1px, transparent 1px) 0 0/20% 100%;
+      pointer-events:none;
+    }
+    .timeline-row{
+      position:relative;
+      display:grid;
+      grid-template-columns:96px minmax(0,1fr);
+      gap:8px;
+      min-height:38px;
+      align-items:center;
+      z-index:1;
+    }
+    .timeline-label{
+      display:grid;
+      grid-template-columns:24px minmax(0,1fr);
+      gap:7px;
+      align-items:center;
       min-width:0;
     }
-    .path-dot{
-      width:20px;height:20px;border-radius:50%;
-      background:#fff;box-shadow:inset 0 0 0 1px rgba(17,17,22,.16);
-      flex:none;
+    .state-dot{
+      width:22px;height:22px;
+      border-radius:50%;
+      display:grid;place-items:center;
+      border:1.4px solid currentColor;
+      background:#fff;
+      font-size:10px;
+      font-weight:900;
+    }
+    .state-dot.done{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .state-dot.now{background:var(--orange);color:#fff;border-color:var(--orange)}
+    .state-dot.next{color:#4E79D8;border-color:#4E79D8}
+    .timeline-label strong{
+      display:block;
+      min-width:0;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      font-size:8.7px;
+      font-weight:750;
+      letter-spacing:-.01em;
+    }
+    .timeline-track{
+      position:relative;
+      height:26px;
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      align-items:center;
+      border-radius:999px;
+    }
+    .timeline-track::before{
+      content:"";
+      position:absolute;
+      left:0;right:0;top:50%;
+      height:7px;
+      transform:translateY(-50%);
+      border-radius:999px;
+      background:#EEF1F5;
+    }
+    .timeline-bar{
+      --start:1;
+      --span:2;
+      grid-column:var(--start) / span var(--span);
+      position:relative;
+      z-index:2;
+      height:15px;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      padding-right:3px;
+      min-width:0;
+      transition:grid-column .28s ease,width .28s ease,transform .18s ease;
+      cursor:pointer;
+    }
+    .timeline-bar:active{transform:scaleY(.92)}
+    .timeline-bar.black{background:var(--ink)}
+    .timeline-bar.orange{background:var(--orange)}
+    .timeline-bar.blue{background:var(--blue)}
+    .timeline-end{
+      width:12px;height:12px;
+      border-radius:50%;
+      display:grid;place-items:center;
+      background:#fff;
+      color:var(--ink);
+      font-size:7px;
+      font-weight:900;
+      box-shadow:0 0 0 1px rgba(17,17,22,.10);
+    }
+    .timeline-bar.blue .timeline-end{
+      background:transparent;
+      box-shadow:none;
+    }
+    .avatar-trail{
+      position:absolute;
+      left:calc(100% + 5px);
+      top:50%;
+      transform:translateY(-50%);
+      display:flex;
+      align-items:center;
+      pointer-events:none;
+    }
+    .avatar-trail span{
+      width:18px;height:18px;border-radius:50%;
+      display:grid;place-items:center;
+      margin-left:-5px;
+      border:2px solid #fff;
+      font-size:6px;
+      font-weight:900;
+      color:#111;
+      box-shadow:0 1px 3px rgba(17,17,22,.10);
+    }
+    .avatar-trail span:nth-child(1){background:var(--blue)}
+    .avatar-trail span:nth-child(2){background:var(--pink)}
+    .avatar-trail span:nth-child(3){background:var(--orange)}
+    .timeline-axis{
+      display:grid;
+      grid-template-columns:96px minmax(0,1fr);
+      gap:8px;
+      margin-top:3px;
+    }
+    .axis-labels{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      color:#9699A0;
+      font-size:7.5px;
+      font-weight:650;
+      text-align:center;
+    }
+    .axis-labels span{
+      min-width:0;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .roadmap-hint{
+      margin-top:9px;
+      padding-top:9px;
+      border-top:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      font-size:7.5px;
+      color:#94979F;
+    }
+    .roadmap-hint strong{
+      color:#575A62;
+      font-weight:750;
     }
 
     .bottom-nav{
@@ -448,7 +681,7 @@
       bottom:calc(10px + var(--safe-bottom));
       transform:translateX(-50%);
       width:min(calc(100% - 28px),452px);
-      height:64px;
+      height:60px;
       display:grid;
       grid-template-columns:1fr 1fr 54px 1fr 1fr;
       align-items:center;
@@ -467,18 +700,11 @@
     .nav-item svg{width:18px;height:18px}
     .nav-item.is-active{color:var(--ink)}
     .nav-ai{
-      width:48px;height:48px;border-radius:50%;
+      width:46px;height:46px;border-radius:50%;
       display:grid;place-items:center;
       margin:auto;
       background:var(--ink);color:#fff;
       font-size:17px;
-    }
-
-    .source-note{
-      margin:18px 4px 2px;
-      font-size:8px;line-height:1.45;
-      color:#A0A3AA;
-      text-align:center;
     }
 
     @media (max-width:370px){
@@ -495,7 +721,13 @@
 <body>
   <main class="app">
     <header class="topbar">
-      <div class="avatar">祁</div>
+      <div class="avatar" aria-label="学习者头像">
+        <img
+          src="https://opendoodles.s3-us-west-1.amazonaws.com/selfie.png"
+          alt="Open Doodles 卡通人物头像"
+          referrerpolicy="no-referrer"
+        />
+      </div>
       <div class="hello">
         <small>Hello，欢迎回来</small>
         <strong>今天继续往前一点</strong>
@@ -527,8 +759,8 @@
 
       <div class="hero-visual" aria-label="学习插画">
         <img
-          src="https://cdn.pixabay.com/photo/2025/12/30/15/51/online-studying-illustration-10043430_1280.png"
-          alt="正在使用电脑学习的人物插画"
+          src="https://opendoodles.s3-us-west-1.amazonaws.com/sitting-reading.png"
+          alt="Open Doodles 阅读学习人物插画"
           referrerpolicy="no-referrer"
         />
       </div>
@@ -645,33 +877,77 @@
       <div class="orb" aria-hidden="true"><span></span></div>
     </section>
 
-    <section class="roadmap">
+    <section class="roadmap" id="roadmap">
       <div class="roadmap-head">
-        <div>
-          <small style="font-size:9px;color:#92959D;font-weight:750;letter-spacing:.07em;">ROADMAP</small>
-          <h3>本周路径</h3>
+        <div class="roadmap-title">
+          <small>ROADMAP</small>
+          <div class="roadmap-title-line">
+            <h3>本周路径</h3>
+            <span class="week-badge">WEEK 36</span>
+          </div>
         </div>
-        <span>WEEK 36</span>
+        <a class="roadmap-link" href="#roadmap">查看完整计划 →</a>
       </div>
 
-      <div class="path black">
-        <div class="path-left"><span class="path-dot"></span><span>Python 集合与哈希</span></div>
-        <span>完成</span>
+      <div class="range-tabs" role="tablist" aria-label="路径时间范围">
+        <button class="range-tab" type="button" role="tab" aria-selected="false" data-range="day">日</button>
+        <button class="range-tab is-active" type="button" role="tab" aria-selected="true" data-range="week">周</button>
+        <button class="range-tab" type="button" role="tab" aria-selected="false" data-range="month">月</button>
+        <button class="range-tab" type="button" role="tab" aria-selected="false" data-range="year">年</button>
       </div>
-      <div class="path orange">
-        <div class="path-left"><span class="path-dot"></span><span>Data Agent 架构</span></div>
-        <span>现在</span>
+
+      <div class="timeline" aria-label="学习路径时间轴">
+        <div class="timeline-row" data-task="python">
+          <div class="timeline-label">
+            <span class="state-dot done">✓</span>
+            <strong>Python 集合与哈希</strong>
+          </div>
+          <div class="timeline-track">
+            <button class="timeline-bar black" type="button" style="--start:1;--span:2" aria-label="Python 集合与哈希，已完成">
+              <span class="timeline-end">✓</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="timeline-row" data-task="agent">
+          <div class="timeline-label">
+            <span class="state-dot now">▶</span>
+            <strong>Data Agent 架构</strong>
+          </div>
+          <div class="timeline-track">
+            <button class="timeline-bar orange" type="button" style="--start:2;--span:2" aria-label="Data Agent 架构，当前进行中">
+              <span class="timeline-end">✓</span>
+              <span class="avatar-trail" aria-hidden="true"><span>A</span><span>I</span><span>✦</span></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="timeline-row" data-task="interview">
+          <div class="timeline-label">
+            <span class="state-dot next"></span>
+            <strong>面试项目表达</strong>
+          </div>
+          <div class="timeline-track">
+            <button class="timeline-bar blue" type="button" style="--start:4;--span:2" aria-label="面试项目表达，下一步">
+              <span class="timeline-end"></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="timeline-axis">
+          <span aria-hidden="true"></span>
+          <div class="axis-labels" aria-label="时间刻度">
+            <span>周一</span><span>周二</span><span>周三</span><span>周四</span><span>周五</span>
+          </div>
+        </div>
       </div>
-      <div class="path blue">
-        <div class="path-left"><span class="path-dot"></span><span>面试项目表达</span></div>
-        <span>下一步</span>
+
+      <div class="roadmap-hint">
+        <span>点击任务条可进入对应学习内容</span>
+        <strong id="roadmap-range-name">周视图</strong>
       </div>
     </section>
-
-    <p class="source-note">
-      Hero illustration: Pixabay · PNG raster asset · Pixabay Content License
-    </p>
-  </main>
+</main>
 
   <nav class="bottom-nav" aria-label="主导航">
     <a href="#" class="nav-item is-active">
@@ -706,6 +982,68 @@
     document.querySelector('.nav-ai').addEventListener('click',()=>{
       document.querySelector('.ai-strip').scrollIntoView({behavior:'smooth',block:'center'});
     });
+
+    const roadmapViews = {
+      day: {
+        name: '日视图',
+        labels: ['09:00','11:00','13:00','15:00','17:00'],
+        bars: { python:[1,2], agent:[2,3], interview:[4,2] }
+      },
+      week: {
+        name: '周视图',
+        labels: ['周一','周二','周三','周四','周五'],
+        bars: { python:[1,2], agent:[2,2], interview:[4,2] }
+      },
+      month: {
+        name: '月视图',
+        labels: ['W1','W2','W3','W4','W5'],
+        bars: { python:[1,2], agent:[2,3], interview:[4,2] }
+      },
+      year: {
+        name: '年视图',
+        labels: ['Q1','Q2','Q3','Q4','年度'],
+        bars: { python:[1,2], agent:[2,2], interview:[3,2] }
+      }
+    };
+
+    const rangeButtons = document.querySelectorAll('.range-tab');
+    const axisLabels = document.querySelectorAll('.axis-labels span');
+    const rangeName = document.getElementById('roadmap-range-name');
+
+    rangeButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const view = roadmapViews[button.dataset.range];
+        if (!view) return;
+
+        rangeButtons.forEach(item => {
+          item.classList.toggle('is-active', item === button);
+          item.setAttribute('aria-selected', item === button ? 'true' : 'false');
+        });
+
+        axisLabels.forEach((label, index) => {
+          label.textContent = view.labels[index] || '';
+        });
+
+        Object.entries(view.bars).forEach(([task, position]) => {
+          const bar = document.querySelector(`.timeline-row[data-task="${task}"] .timeline-bar`);
+          if (!bar) return;
+          bar.style.setProperty('--start', position[0]);
+          bar.style.setProperty('--span', position[1]);
+        });
+
+        rangeName.textContent = view.name;
+      });
+    });
+
+    document.querySelectorAll('.timeline-bar').forEach(bar => {
+      bar.addEventListener('click', () => {
+        bar.animate(
+          [{ transform:'scaleY(1)' }, { transform:'scaleY(.84)' }, { transform:'scaleY(1)' }],
+          { duration:220, easing:'ease-out' }
+        );
+      });
+    });
+
   </script>
 </body>
 </html>
