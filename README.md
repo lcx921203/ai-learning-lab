@@ -1,75 +1,51 @@
-# AI Learning Companion — V1.8
+# AI Learning Companion — V1.9
 
-这版不是继续堆视觉，而是把“视觉规范”和“交互语义”分开。
+## 本版目标
+首页从“静态好看”进入“状态与交互可解释”。
 
-## 交互语义
+### 1. Tab 是一级模式
+技术 / 项目 / 面试现在会同时改变：
+- 当前 Hero 的 3 张轮播内容
+- Quick Start
+- My Courses
+- 模式说明
 
-### Hero
-Hero 是独立的 Featured Carousel（重点推荐轮播）。
-- 3 张
-- 右上角固定 1/3、2/3、3/3
-- 5 秒自动轮播
-- 支持左右滑
-- 支持底部圆点点按
-- Hero 不再自动改变下面的 Tab 内容
+Hero 仍每 5 秒轮播，但只轮播当前 Tab 内的内容。
 
-### 技术 / 项目 / 面试
-三个 Tab 是“首页内容分类筛选”，不是 Hero 页码。
+### 2. 学习状态机
+使用 localStorage 模拟真实学习状态：
+- NEW → 开始学习 / 开始项目 / 开始练习
+- 进行中 → 继续学习 / 继续项目 / 继续练习
+- 已完成 → 复习 / 项目复盘 / 查看结果
+- 待复习 → 今日复习 / 再次练习
 
-点击 Tab 会同时改变：
-1. Tab 高亮
-2. Tab 下方的上下文提示
-3. Quick Start 两张卡
-4. My Courses 三条课程内容
+点击 Hero / Quick Start / Course / Roadmap 会打开详情底部弹层。
+弹层可以“开始/继续”和“标记完成”，状态会保存到浏览器并同步更新。
 
-#### 技术
-- Python 集合与哈希
-- Data Agent 源码
-- 数据工程 / Python 工程课程
+以后接后端时，只需把 localStorage 换成 API，UI 状态逻辑可以保留。
 
-#### 项目
-- AI-Native Data Platform
-- Audit Window Calibration
-- 项目架构 / 难点复盘
+### 3. Roadmap
+Roadmap 的颜色与状态绑定：
+- 黑 = 已完成
+- 橙 = 进行中
+- 淡蓝 = 待复习
+- 蓝 = 下一步
 
-#### 面试
-- 高频技术问答
-- 项目表达
-- 模拟面试 / 项目题库 / 简历优化
+点击路径条会打开对应学习内容。
+日 / 周 / 月 / 年继续是同一份数据的不同时间尺度。
 
-这样用户点击 Tab 后，会明确看到“整个内容区域已经进入哪个模式”。
+### 4. 小字操作
+- 查看类：查看全部 → / 查看完整计划 →
+- 编辑类：管理（无箭头）
 
-## Quick Start
-删除“1/3、2/4”这类没有业务解释的数字。
-状态只保留有意义的信息：
-- 12 MIN
-- 上次
-- 当前
-- 下一步
-- 8 题
-- Story
+现在点击会给出明确目标提示，为后续独立页面设计预留入口。
 
-状态胶囊去掉灰色描边，避免脏边。
+### 5. AI 卡
+保持静态 Open Doodles PNG 插画，不使用光晕与持续动画。
+插画放大并融入卡片右侧构图。
 
-## AI Assistant
-彻底删除 Orb / 光晕 / 呼吸动画。
-改用 Open Doodles PNG 插画填充视觉留白。
-AI 区域保持静态，只保留“问 AI”操作。
-
-## Roadmap
-- 背景由纯白改为淡蓝灰 `#E9EEF7`
-- 保留错位时间路径
-- 无头像
-- 无流光
-- 日 / 周 / 月 / 年可切换
-- 交互只做必要的短反馈
-
-## 视觉原则
-1. 颜色：冷灰底 + 蓝主色 + 粉 / 橙功能色 + 黑视觉锚点
-2. 排版：大标题有力量，小字克制、有个性，不做无意义装饰
-3. 插画：优先 Open Doodles PNG，卡片空时用于丰富构图，不使用矢量 SVG
-4. 动效：只为状态变化和反馈服务，不做持续炫技动画
-5. 交互：每个可点元素必须有明确语义和结果
+### 6. 底部导航
+向下滚动时自动隐藏，向上滚动时出现，减少 Safari 双底栏遮挡。
 
 ## Commit
-refactor(ui): clarify interaction semantics and replace ai motion with illustration
+feat(ui): add mode-aware hero and learning state interactions

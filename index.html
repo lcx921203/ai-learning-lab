@@ -7,7 +7,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <meta name="build-version" content="reference-v1.8-semantic" />
+  <meta name="build-version" content="reference-v1.9-mode-state" />
   <title>AI Learning Companion</title>
   <style>
     :root{
@@ -150,8 +150,9 @@
       width:38px;height:38px;border-radius:50%;
       display:grid;place-items:center;
       background:#fff;
-      font-weight:900;font-size:15px;
+      color:var(--ink);
     }
+    .hero-brand svg{width:17px;height:17px}
     .hero-progress{
       width:42px;height:42px;border-radius:50%;
       display:grid;place-items:center;
@@ -223,22 +224,6 @@
       object-position:right bottom;
       filter:saturate(.90) contrast(.98);
     }
-    .hero-bubbles{
-      position:absolute;
-      right:136px;bottom:12px;
-      display:flex;
-      z-index:3;
-    }
-    .hero-bubbles span{
-      width:24px;height:24px;border-radius:50%;
-      display:grid;place-items:center;
-      margin-left:-7px;
-      border:2px solid var(--blue);
-      font-size:8px;font-weight:800;
-    }
-    .hero-bubbles span:nth-child(1){background:#111;color:#fff}
-    .hero-bubbles span:nth-child(2){background:var(--pink)}
-    .hero-bubbles span:nth-child(3){background:var(--orange)}
 
     .hero-carousel{
       position:relative;
@@ -512,7 +497,7 @@
     .ai-illustration{
       position:relative;
       width:100%;
-      height:96px;
+      height:108px;
       display:flex;
       align-items:flex-end;
       justify-content:flex-end;
@@ -522,7 +507,7 @@
       content:"";
       position:absolute;
       right:-2px;bottom:2px;
-      width:82px;height:66px;
+      width:98px;height:72px;
       border-radius:46% 54% 58% 42% / 50% 40% 60% 50%;
       background:rgba(255,255,255,.18);
       transform:rotate(-9deg);
@@ -530,7 +515,7 @@
     .ai-illustration img{
       position:relative;
       z-index:1;
-      width:96px;
+      width:116px;
       height:96px;
       object-fit:contain;
       object-position:right bottom;
@@ -778,7 +763,118 @@
       transform:scale(.975);
     }
 
+    
+    .timeline-bar.orange .bar-title,
+    .timeline-bar.orange .bar-meta{color:var(--ink)!important}
+    .timeline-bar.blue .bar-title,
+    .timeline-bar.blue .bar-meta{color:#18315F!important}
+    .timeline-bar.soft .bar-title,
+    .timeline-bar.soft .bar-meta{color:#31476D!important}
+    .section-head a,.roadmap-link{
+      color:#6F727A;
+      text-decoration:none;
+    }
+    .section-head a::after{content:" →"}
+    .roadmap-link::after{content:""}
+    .course-manage{
+      font-size:10px;
+      color:#6F727A;
+      font-weight:650;
+      border:0;
+      background:transparent;
+      padding:0;
+    }
+    
+    .sheet-backdrop{
+      position:fixed;inset:0;
+      z-index:60;
+      background:rgba(17,17,22,.18);
+      backdrop-filter:blur(2px);
+      -webkit-backdrop-filter:blur(2px);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .22s ease;
+    }
+    .sheet-backdrop.is-open{opacity:1;pointer-events:auto}
+    .action-sheet{
+      position:fixed;
+      z-index:61;
+      left:50%;bottom:calc(8px + var(--safe-bottom));
+      transform:translate(-50%, calc(100% + 24px));
+      width:min(calc(100% - 24px),456px);
+      border-radius:28px;
+      background:#fff;
+      padding:18px;
+      box-shadow:0 18px 60px rgba(17,17,22,.22);
+      transition:transform .28s cubic-bezier(.2,.8,.2,1);
+    }
+    .action-sheet.is-open{transform:translate(-50%,0)}
+    .sheet-grab{
+      width:34px;height:4px;border-radius:999px;
+      background:#D6D8DE;margin:0 auto 14px;
+    }
+    .sheet-kicker{
+      font-size:8px;font-weight:800;letter-spacing:.12em;
+      color:#9699A0;margin-bottom:5px;
+    }
+    .sheet-title{
+      margin:0;
+      font-size:21px;line-height:1.12;
+      font-weight:820;letter-spacing:-.035em;
+    }
+    .sheet-desc{
+      margin:8px 0 14px;
+      font-size:10px;line-height:1.55;
+      color:#777A82;
+    }
+    .sheet-meta{
+      display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px;
+    }
+    .sheet-chip{
+      height:26px;padding:0 9px;border-radius:999px;
+      display:inline-flex;align-items:center;
+      background:#F0F2F5;
+      color:#666A73;
+      font-size:8px;font-weight:750;
+    }
+    .sheet-actions{display:grid;grid-template-columns:1fr auto;gap:8px}
+    .sheet-primary,.sheet-secondary{
+      height:46px;border-radius:999px;
+      font-weight:800;font-size:11px;
+    }
+    .sheet-primary{background:var(--ink);color:#fff}
+    .sheet-secondary{padding:0 15px;background:#EEF0F4;color:#555860}
+    .sheet-close{
+      position:absolute;right:16px;top:16px;
+      width:34px;height:34px;border-radius:50%;
+      background:#F0F2F5;color:#555;
+      font-size:18px;
+    }
+    .toast{
+      position:fixed;z-index:80;
+      left:50%;bottom:calc(86px + var(--safe-bottom));
+      transform:translate(-50%,12px);
+      background:rgba(17,17,22,.92);color:#fff;
+      padding:9px 13px;border-radius:999px;
+      font-size:9px;font-weight:700;
+      opacity:0;pointer-events:none;
+      transition:opacity .18s ease,transform .18s ease;
+      white-space:nowrap;
+    }
+    .toast.is-show{opacity:1;transform:translate(-50%,0)}
+
     .nav-safe-spacer{height:18px}
+
+    
+    .bottom-nav{
+      transition:transform .28s cubic-bezier(.2,.8,.2,1), opacity .22s ease;
+      will-change:transform;
+    }
+    .bottom-nav.is-hidden{
+      transform:translate(-50%, calc(100% + 28px));
+      opacity:.08;
+      pointer-events:none;
+    }
 
     @media (max-width:370px){
       .app{padding-left:14px;padding-right:14px}
@@ -825,70 +921,52 @@
     <section class="hero hero-carousel" id="hero-carousel" aria-roledescription="carousel">
       <article class="hero-slide is-active" data-slide="0" data-mode="tech" aria-label="1 / 3">
         <div class="hero-top">
-          <span class="hero-brand">◎</span>
+          <span class="hero-brand" id="hero-brand-0">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg>
+          </span>
           <span class="hero-progress" aria-label="第 1 张，共 3 张">1 / 3</span>
         </div>
         <div class="hero-copy">
-          <p class="hero-kicker">TODAY'S LEARNING</p>
-          <h1>Data Agent<br>架构进阶</h1>
-          <p>继续理解 Router、Planner、Context 与审计链路。</p>
-          <a href="#" class="hero-cta">继续学习 <span>→</span></a>
+          <p class="hero-kicker" id="hero-kicker-0"></p>
+          <h1 id="hero-title-0"></h1>
+          <p id="hero-desc-0"></p>
+          <button type="button" class="hero-cta" id="hero-cta-0" data-action-item=""></button>
         </div>
         <div class="hero-visual" aria-label="学习插画">
-          <img
-            src="https://opendoodles.s3-us-west-1.amazonaws.com/reading.png"
-            alt="Open Doodles 阅读学习人物插画"
-            referrerpolicy="no-referrer"
-          />
-        </div>
-        <div class="hero-bubbles" aria-hidden="true">
-          <span>A</span><span>D</span><span>✦</span>
-        </div>
-      </article>
-
-      <article class="hero-slide" data-slide="1" data-mode="project" aria-label="2 / 3">
+          <img id="hero-img-0" src="" alt="" referrerpolicy="no-referrer" />
+ <article class="hero-slide" data-slide="1" data-mode="project" aria-label="2 / 3">
         <div class="hero-top">
-          <span class="hero-brand">◇</span>
+          <span class="hero-brand" id="hero-brand-1">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg>
+          </span>
           <span class="hero-progress" aria-label="第 2 张，共 3 张">2 / 3</span>
         </div>
         <div class="hero-copy">
-          <p class="hero-kicker">PROJECT PRACTICE</p>
-          <h1>AI-Native<br>项目实战</h1>
-          <p>从架构理解到源码、难点和面试表达，形成完整项目 Story。</p>
-          <a href="#" class="hero-cta">进入项目 <span>→</span></a>
+          <p class="hero-kicker" id="hero-kicker-1"></p>
+          <h1 id="hero-title-1"></h1>
+          <p id="hero-desc-1"></p>
+          <button type="button" class="hero-cta" id="hero-cta-1" data-action-item=""></button>
         </div>
         <div class="hero-visual" aria-label="项目插画">
-          <img
-            src="https://opendoodles.s3-us-west-1.amazonaws.com/sitting-reading.png"
-            alt="Open Doodles 项目学习人物插画"
-            referrerpolicy="no-referrer"
-          />
-        </div>
-        <div class="hero-bubbles" aria-hidden="true">
-          <span>P</span><span>R</span><span>✦</span>
-        </div>
-      </article>
-
-      <article class="hero-slide" data-slide="2" data-mode="interview" aria-label="3 / 3">
+          <img id="hero-img-1" src="" alt="" referrerpolicy="no-referrer" />
+    <article class="hero-slide" data-slide="2" data-mode="interview" aria-label="3 / 3">
         <div class="hero-top">
-          <span class="hero-brand">✦</span>
+          <span class="hero-brand" id="hero-brand-2">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg>
+          </span>
           <span class="hero-progress" aria-label="第 3 张，共 3 张">3 / 3</span>
         </div>
         <div class="hero-copy">
-          <p class="hero-kicker">INTERVIEW READY</p>
-          <h1>项目表达<br>模拟面试</h1>
-          <p>把技术难点讲清楚，把架构取舍讲完整，把项目价值讲具体。</p>
-          <a href="#" class="hero-cta">开始练习 <span>→</span></a>
+          <p class="hero-kicker" id="hero-kicker-2"></p>
+          <h1 id="hero-title-2"></h1>
+          <p id="hero-desc-2"></p>
+          <button type="button" class="hero-cta" id="hero-cta-2" data-action-item=""></button>
         </div>
         <div class="hero-visual" aria-label="面试插画">
-          <img
-            src="https://opendoodles.s3-us-west-1.amazonaws.com/levitate.png"
-            alt="Open Doodles 面试学习人物插画"
-            referrerpolicy="no-referrer"
-          />
+          <img id="hero-img-2" src="" alt="" referrerpolicy="no-referrer" />
         </div>
-        <div class="hero-bubbles" aria-hidden="true">
-          <span>I</span><span>Q</span><span>✦</span>
+      </article>referrerpolicy="no-referrer"
+          />
         </div>
       </article>
 
@@ -928,7 +1006,7 @@
       </div>
 
       <div class="two-cards">
-        <article class="mini-card pink" id="quick-card-a">
+        <article class="mini-card pink" id="quick-card-a" data-item-id="">
           <div class="mini-head">
             <span class="mini-icon" id="quick-icon-a">
               <svg viewBox="0 0 24 24"><path d="M5 5h14v14H5z"/><path d="M8 9h8M8 13h5"/></svg>
@@ -938,10 +1016,10 @@
           <small id="quick-kicker-a">TECH LEARNING</small>
           <h3 id="quick-title-a">组件 / 技术</h3>
           <p id="quick-desc-a">Python · Spark · Flink · Iceberg</p>
-          <a class="mini-link" id="quick-link-a" href="#">继续 · 12 min →</a>
+          <a class="mini-link" id="quick-link-a" href="#" data-item-id="">继续 · 12 min →</a>
         </article>
 
-        <article class="mini-card orange" id="quick-card-b">
+        <article class="mini-card orange" id="quick-card-b" data-item-id="">
           <div class="mini-head">
             <span class="mini-icon" id="quick-icon-b">
               <svg viewBox="0 0 24 24"><path d="M4 7h16v12H4z"/><path d="M8 7V4h8v3"/></svg>
@@ -951,7 +1029,7 @@
           <small id="quick-kicker-b">SOURCE READING</small>
           <h3 id="quick-title-b">源码阅读</h3>
           <p id="quick-desc-b">Router · Planner · Context</p>
-          <a class="mini-link" id="quick-link-b" href="#">继续上次位置 →</a>
+          <a class="mini-link" id="quick-link-b" href="#" data-item-id="">继续上次位置 →</a>
         </article>
       </div>
     </section>
@@ -962,11 +1040,11 @@
           <small>MY COURSES</small>
           <h2>我的学习</h2>
         </div>
-        <a href="#">管理</a>
+        <button type="button" class="course-manage" id="course-manage">管理</button>
       </div>
 
       <div class="course-list">
-        <a href="#" class="course-row is-dark" id="course-row-1">
+        <a href="#" class="course-row is-dark" id="course-row-1" data-item-id="">
           <span class="course-icon">
             <svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg>
           </span>
@@ -977,7 +1055,7 @@
           <span class="course-arrow">›</span>
         </a>
 
-        <a href="#" class="course-row" id="course-row-2">
+        <a href="#" class="course-row" id="course-row-2" data-item-id="">
           <span class="course-icon">
             <svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z"/><path d="m3 12 9 5 9-5"/><path d="m3 16 9 5 9-5"/></svg>
           </span>
@@ -988,7 +1066,7 @@
           <span class="course-arrow">›</span>
         </a>
 
-        <a href="#" class="course-row" id="course-row-3">
+        <a href="#" class="course-row" id="course-row-3" data-item-id="">
           <span class="course-icon">
             <svg viewBox="0 0 24 24"><path d="M5 5h14v11H9l-4 4z"/><path d="M8 9h8M8 12h5"/></svg>
           </span>
@@ -1105,363 +1183,697 @@
     (() => {
       "use strict";
 
-      // Prevent placeholder anchors from navigating.
-      document.querySelectorAll('a[href="#"]').forEach(link => {
-        link.addEventListener('click', event => event.preventDefault());
-      });
+      const STORAGE_KEY = "ai-learning-state-v1";
+      const defaultState = {
+        "tech-python-hash": "in_progress",
+        "tech-agent-source": "in_progress",
+        "tech-data-map": "in_progress",
+        "tech-python-engineering": "new",
+        "project-platform": "in_progress",
+        "project-audit-window": "new",
+        "project-agent-runtime": "in_progress",
+        "project-architecture": "in_progress",
+        "project-retro": "new",
+        "interview-questions": "new",
+        "interview-story": "in_progress",
+        "interview-mock": "new",
+        "interview-bank": "new",
+        "interview-resume": "in_progress",
+        "road-python": "completed",
+        "road-agent": "in_progress",
+        "road-semantic": "review",
+        "road-interview": "new"
+      };
 
-      // Bottom AI button scrolls to the AI card.
-      const navAi = document.querySelector('.nav-ai');
-      const aiStrip = document.querySelector('.ai-strip');
-      if (navAi && aiStrip) {
-        navAi.addEventListener('click', () => {
-          aiStrip.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        });
+      let learningState = {};
+      try {
+        learningState = { ...defaultState, ...(JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}) };
+      } catch {
+        learningState = { ...defaultState };
       }
 
-      // ----------------------------------------------------------
-      // HERO CAROUSEL
-      // Semantics: featured content carousel, independent of tabs.
-      // ----------------------------------------------------------
-      const carousel = document.getElementById('hero-carousel');
-      const slides = Array.from(document.querySelectorAll('.hero-slide'));
-      const dots = Array.from(document.querySelectorAll('.hero-dot'));
+      const saveState = () => {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(learningState)); } catch {}
+      };
 
-      if (carousel && slides.length > 1) {
-        let heroIndex = 0;
-        let heroTimer = null;
-        let touchStartX = 0;
-        let touchDeltaX = 0;
+      const stateLabel = {
+        new: "NEW",
+        in_progress: "进行中",
+        completed: "已完成",
+        review: "待复习"
+      };
 
-        const renderHero = (nextIndex, direction = 1) => {
-          if (nextIndex === heroIndex) return;
+      const actionLabel = {
+        tech: {
+          new: "开始学习",
+          in_progress: "继续学习",
+          completed: "复习",
+          review: "今日复习"
+        },
+        project: {
+          new: "开始项目",
+          in_progress: "继续项目",
+          completed: "项目复盘",
+          review: "项目复盘"
+        },
+        interview: {
+          new: "开始练习",
+          in_progress: "继续练习",
+          completed: "查看结果",
+          review: "再次练习"
+        }
+      };
 
-          const current = slides[heroIndex];
-          const next = slides[nextIndex];
-
-          current.classList.add('is-leaving');
-          current.classList.remove('is-active');
-
-          next.style.transform =
-            `translateX(${direction > 0 ? 18 : -18}px) scale(.992)`;
-
-          requestAnimationFrame(() => {
-            next.classList.add('is-active');
-            next.style.transform = '';
-          });
-
-          window.setTimeout(() => {
-            current.classList.remove('is-leaving');
-          }, 760);
-
-          dots.forEach((dot, index) => {
-            dot.classList.toggle('is-active', index === nextIndex);
-          });
-
-          heroIndex = nextIndex;
-        };
-
-        const nextHero = () =>
-          renderHero((heroIndex + 1) % slides.length, 1);
-
-        const prevHero = () =>
-          renderHero((heroIndex - 1 + slides.length) % slides.length, -1);
-
-        const stopHero = () => {
-          if (heroTimer) window.clearInterval(heroTimer);
-          heroTimer = null;
-        };
-
-        const startHero = () => {
-          stopHero();
-          heroTimer = window.setInterval(nextHero, 5000);
-        };
-
-        dots.forEach((dot, index) => {
-          dot.addEventListener('click', () => {
-            renderHero(index, index >= heroIndex ? 1 : -1);
-            startHero();
-          });
-        });
-
-        carousel.addEventListener('touchstart', event => {
-          touchStartX = event.touches[0].clientX;
-          touchDeltaX = 0;
-          stopHero();
-        }, { passive: true });
-
-        carousel.addEventListener('touchmove', event => {
-          touchDeltaX = event.touches[0].clientX - touchStartX;
-        }, { passive: true });
-
-        carousel.addEventListener('touchend', () => {
-          if (Math.abs(touchDeltaX) > 42) {
-            touchDeltaX < 0 ? nextHero() : prevHero();
-          }
-          startHero();
-        });
-
-        document.addEventListener('visibilitychange', () => {
-          document.hidden ? stopHero() : startHero();
-        });
-
-        startHero();
-      }
-
-      // ----------------------------------------------------------
-      // TAB FILTERS
-      // Semantics: filter/replace Quick Start + My Courses only.
-      // They do NOT control the auto-rotating hero.
-      // ----------------------------------------------------------
-      const modeButtons = Array.from(document.querySelectorAll('.mode'));
+      const itemCatalog = {
+        "tech-python-hash": {
+          mode:"tech", title:"Python 集合与哈希",
+          desc:"从可哈希、不可哈希，到 set / dict / tuple 的实际使用。",
+          meta:["约 18 min","6 个知识点","技术学习"]
+        },
+        "tech-agent-source": {
+          mode:"tech", title:"Data Agent 源码",
+          desc:"继续 Router → Planner → Context 的源码阅读与职责梳理。",
+          meta:["上次位置已保存","源码阅读","技术学习"]
+        },
+        "tech-data-map": {
+          mode:"tech", title:"数据工程知识地图",
+          desc:"Python、Spark、Flink、Iceberg、dbt 等技术专题。",
+          meta:["知识地图","持续更新","技术学习"]
+        },
+        "tech-python-engineering": {
+          mode:"tech", title:"Python 工程语法",
+          desc:"集合、哈希、异常处理、幂等与工程常用语法。",
+          meta:["新内容","Python","技术学习"]
+        },
+        "project-platform": {
+          mode:"project", title:"AI-Native Data Platform",
+          desc:"围绕 Agent、治理、Semantic Layer 的完整项目实战。",
+          meta:["当前项目","项目实战","持续迭代"]
+        },
+        "project-audit-window": {
+          mode:"project", title:"Audit Window Calibration",
+          desc:"审计组提交窗口校准：从需求、实现到验证。",
+          meta:["下一任务","工程实践","项目实战"]
+        },
+        "project-agent-runtime": {
+          mode:"project", title:"Data Agent 实战",
+          desc:"Router、Planner、Context、Executor 的完整运行链路。",
+          meta:["核心模块","Agent","项目实战"]
+        },
+        "project-architecture": {
+          mode:"project", title:"数据平台架构升级",
+          desc:"Iceberg、Trino、dbt、MetricFlow 的架构整合。",
+          meta:["架构专题","数据平台","项目实战"]
+        },
+        "project-retro": {
+          mode:"project", title:"项目难点复盘",
+          desc:"一致性、血缘、CDC、故障恢复与面试表达。",
+          meta:["待开始","复盘","项目实战"]
+        },
+        "interview-questions": {
+          mode:"interview", title:"高频技术问答",
+          desc:"数据湖、Agent、语义层、CDC 高频题训练。",
+          meta:["8 题","今日练习","面试"]
+        },
+        "interview-story": {
+          mode:"interview", title:"项目表达",
+          desc:"从难点、取舍、价值到 STAR 项目表达。",
+          meta:["Story","项目表达","面试"]
+        },
+        "interview-mock": {
+          mode:"interview", title:"模拟面试",
+          desc:"按高级数据开发 / 数据架构 / Agent 岗位模拟。",
+          meta:["模拟","岗位匹配","面试"]
+        },
+        "interview-bank": {
+          mode:"interview", title:"项目表达题库",
+          desc:"北美、医考、Data Agent 项目常见追问题库。",
+          meta:["题库","项目表达","面试"]
+        },
+        "interview-resume": {
+          mode:"interview", title:"简历优化",
+          desc:"关键词、项目亮点、技术深度与表达优化。",
+          meta:["简历","持续优化","面试"]
+        },
+        "road-python": {
+          mode:"tech", title:"Python 集合与哈希",
+          desc:"本周已完成的技术学习路径。",
+          meta:["周一路径","已完成","Roadmap"]
+        },
+        "road-agent": {
+          mode:"project", title:"Data Agent 架构",
+          desc:"当前正在推进的项目学习路径。",
+          meta:["当前路径","进行中","Roadmap"]
+        },
+        "road-semantic": {
+          mode:"tech", title:"语义层与指标",
+          desc:"进入复习窗口的语义层与 MetricFlow 内容。",
+          meta:["待复习","Semantic Layer","Roadmap"]
+        },
+        "road-interview": {
+          mode:"interview", title:"面试项目表达",
+          desc:"接下来要进入的项目表达训练。",
+          meta:["下一步","面试","Roadmap"]
+        }
+      };
 
       const modeData = {
         tech: {
           context: '<strong>技术学习</strong> · 继续最近的知识与源码',
           count: '2 个继续项',
-          quick: [
+          hero: [
             {
-              status: '12 MIN',
-              kicker: 'CONTINUE',
-              title: 'Python 集合与哈希',
-              desc: '上次学到 · 可哈希与不可哈希',
-              link: '继续学习 →'
+              itemId:"tech-agent-source",
+              kicker:"TODAY'S LEARNING",
+              title:"Data Agent<br>架构进阶",
+              desc:"继续理解 Router、Planner、Context 与审计链路。",
+              img:"https://opendoodles.s3-us-west-1.amazonaws.com/reading.png"
             },
             {
-              status: '上次',
-              kicker: 'SOURCE READING',
-              title: 'Data Agent 源码',
-              desc: 'Router → Planner → Context',
-              link: '继续阅读 →'
+              itemId:"tech-python-hash",
+              kicker:"TECH FOCUS",
+              title:"Python<br>集合与哈希",
+              desc:"把 set、dict、tuple 和可哈希真正串起来。",
+              img:"https://opendoodles.s3-us-west-1.amazonaws.com/sitting-reading.png"
+            },
+            {
+              itemId:"tech-data-map",
+              kicker:"KNOWLEDGE MAP",
+              title:"数据工程<br>知识地图",
+              desc:"Spark、Flink、Iceberg、dbt 按主题继续学习。",
+              img:"https://opendoodles.s3-us-west-1.amazonaws.com/loving.png"
             }
           ],
-          courses: [
-            ['AI-Native Data Platform', '正在学习 · Agent Runtime / Audit'],
-            ['数据工程知识地图', 'Python、Spark、Flink、Iceberg、dbt'],
-            ['Python 工程语法', '集合、哈希、异常处理、幂等']
-          ]
+          quick:["tech-python-hash","tech-agent-source"],
+          courses:["tech-data-map","tech-python-engineering","tech-agent-source"]
         },
         project: {
           context: '<strong>项目实战</strong> · 从任务进入源码与架构',
           count: '2 个当前任务',
-          quick: [
+          hero: [
             {
-              status: '当前',
-              kicker: 'PROJECT LAB',
-              title: 'AI-Native Data Platform',
-              desc: 'Agent · 治理 · Semantic Layer',
-              link: '进入项目 →'
+              itemId:"project-platform",
+              kicker:"PROJECT PRACTICE",
+              title:"AI-Native<br>项目实战",
+              desc:"从架构理解到源码、难点和项目表达。",
+              img:"https://opendoodles.s3-us-west-1.amazonaws.com/sitting-reading.png"
             },
             {
-              status: '下一步',
-              kicker: 'NEXT TASK',
-              title: 'Audit Window Calibration',
-              desc: '审计组提交窗口校准',
-              link: '开始任务 →'
+              itemId:"project-audit-window",
+              kicker:"NEXT MILESTONE",
+              title:"Audit Window<br>Calibration",
+              desc:"进入审计组提交窗口校准的下一阶段。",
+              img:"https://opendoodles.s3-us-west-1.amazonaws.com/reading-side.png"
+            },
+            {
+              itemId:"project-retro",
+              kicker:"PROJECT REVIEW",
+              title:"项目难点<br>系统复盘",
+              desc:"一致性、血缘、CDC、故障恢复一次讲清楚。",
+              img:"https://opendoodles.s3-us-west-1.amazonaws.com/float.png"
             }
           ],
-          courses: [
-            ['Data Agent 实战', 'Router、Planner、Context、Executor'],
-            ['数据平台架构升级', 'Iceberg、Trino、dbt、MetricFlow'],
-            ['项目难点复盘', '一致性、血缘、CDC、故障恢复']
-          ]
+          quick:["project-platform","project-audit-window"],
+          courses:["project-agent-runtime","project-architecture","project-retro"]
         },
         interview: {
           context: '<strong>面试准备</strong> · 练问题，也练项目表达',
           count: '2 个今日练习',
-          quick: [
+          hero: [
             {
-              status: '8 题',
-              kicker: 'TODAY',
-              title: '高频技术问答',
-              desc: '数据湖 · Agent · 语义层 · CDC',
-              link: '开始练习 →'
+              itemId:"interview-questions",
+              kicker:"INTERVIEW READY",
+              title:"高频技术<br>问答训练",
+              desc:"数据湖、Agent、语义层、CDC 高频题训练。",
+              img:"https://opendoodles.s3-us-west-1.amazonaws.com/levitate.png"
             },
             {
-              status: 'Story',
-              kicker: 'PROJECT STORY',
-              title: '项目表达',
-              desc: '难点 · 取舍 · 价值 · STAR',
-              link: '继续打磨 →'
+              itemId:"interview-story",
+              kicker:"PROJECT STORY",
+              title:"项目表达<br>模拟面试",
+              desc:"把技术难点、架构取舍和项目价值讲清楚。",
+              img:"https://opendoodles.s3-us-west-1.amazonaws.com/reading-side.png"
+            },
+            {
+              itemId:"interview-resume",
+              kicker:"RESUME READY",
+              title:"简历亮点<br>最后打磨",
+              desc:"关键词、项目深度和岗位匹配一起检查。",
+              img:"https://opendoodles.s3-us-west-1.amazonaws.com/selfie.png"
             }
           ],
-          courses: [
-            ['模拟面试', '数据架构 / 高级数据开发 / Agent'],
-            ['项目表达题库', '北美、医考、Data Agent 项目'],
-            ['简历优化', '关键词、项目亮点、技术深度']
-          ]
+          quick:["interview-questions","interview-story"],
+          courses:["interview-mock","interview-bank","interview-resume"]
         }
       };
 
-      const quickEls = {
-        statusA: document.getElementById('quick-status-a'),
-        kickerA: document.getElementById('quick-kicker-a'),
-        titleA: document.getElementById('quick-title-a'),
-        descA: document.getElementById('quick-desc-a'),
-        linkA: document.getElementById('quick-link-a'),
-        statusB: document.getElementById('quick-status-b'),
-        kickerB: document.getElementById('quick-kicker-b'),
-        titleB: document.getElementById('quick-title-b'),
-        descB: document.getElementById('quick-desc-b'),
-        linkB: document.getElementById('quick-link-b')
+      const iconSvg = {
+        tech:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg>',
+        project:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v12H4z"/><path d="M8 7V4h8v3"/></svg>',
+        interview:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v11H9l-4 4z"/></svg>'
       };
 
-      const contextCopy = document.getElementById('mode-context-copy');
-      const contextCount = document.getElementById('mode-context-count');
+      const getState = itemId => learningState[itemId] || "new";
+      const getAction = itemId => {
+        const item = itemCatalog[itemId];
+        return actionLabel[item.mode][getState(itemId)] || "打开";
+      };
 
-      const courseEls = [
+      // ---------------------------
+      // Action sheet
+      // ---------------------------
+      const sheet = document.getElementById("action-sheet");
+      const backdrop = document.getElementById("sheet-backdrop");
+      const sheetTitle = document.getElementById("sheet-title");
+      const sheetDesc = document.getElementById("sheet-desc");
+      const sheetMeta = document.getElementById("sheet-meta");
+      const sheetPrimary = document.getElementById("sheet-primary");
+      const sheetSecondary = document.getElementById("sheet-secondary");
+      const sheetClose = document.getElementById("sheet-close");
+      const toast = document.getElementById("toast");
+      let activeItemId = null;
+
+      const showToast = message => {
+        if (!toast) return;
+        toast.textContent = message;
+        toast.classList.add("is-show");
+        window.clearTimeout(showToast.timer);
+        showToast.timer = window.setTimeout(() => toast.classList.remove("is-show"), 1400);
+      };
+
+      const closeSheet = () => {
+        sheet?.classList.remove("is-open");
+        backdrop?.classList.remove("is-open");
+        activeItemId = null;
+      };
+
+      const renderSheet = itemId => {
+        const item = itemCatalog[itemId];
+        if (!item) return;
+        activeItemId = itemId;
+        const state = getState(itemId);
+        sheetTitle.textContent = item.title;
+        sheetDesc.textContent = item.desc;
+        sheetMeta.innerHTML =
+          `<span class="sheet-chip">${stateLabel[state]}</span>` +
+          item.meta.map(x => `<span class="sheet-chip">${x}</span>`).join("");
+        sheetPrimary.textContent = getAction(itemId);
+        sheetSecondary.textContent = state === "completed" ? "重新学习" : "标记完成";
+        sheet.classList.add("is-open");
+        backdrop.classList.add("is-open");
+      };
+
+      sheetClose?.addEventListener("click", closeSheet);
+      backdrop?.addEventListener("click", closeSheet);
+
+      sheetPrimary?.addEventListener("click", () => {
+        if (!activeItemId) return;
+        const current = getState(activeItemId);
+        if (current === "new") {
+          learningState[activeItemId] = "in_progress";
+          saveState();
+          showToast("已开始，学习进度会自动保存");
+        } else if (current === "completed") {
+          learningState[activeItemId] = "review";
+          saveState();
+          showToast("已加入复习");
+        } else {
+          showToast("继续上次位置");
+        }
+        refreshAll();
+        renderSheet(activeItemId);
+      });
+
+      sheetSecondary?.addEventListener("click", () => {
+        if (!activeItemId) return;
+        if (getState(activeItemId) === "completed") {
+          learningState[activeItemId] = "new";
+          showToast("已重新开始");
+        } else {
+          learningState[activeItemId] = "completed";
+          showToast("已标记完成");
+        }
+        saveState();
+        refreshAll();
+        renderSheet(activeItemId);
+      });
+
+      // ---------------------------
+      // Hero carousel within mode
+      // ---------------------------
+      const carousel = document.getElementById("hero-carousel");
+      const slides = Array.from(document.querySelectorAll(".hero-slide"));
+      const dots = Array.from(document.querySelectorAll(".hero-dot"));
+      let activeMode = "tech";
+      let heroIndex = 0;
+      let heroTimer = null;
+      let touchStartX = 0;
+      let touchDeltaX = 0;
+
+      const updateHeroContent = () => {
+        const heroItems = modeData[activeMode].hero;
+        slides.forEach((slide, index) => {
+          const data = heroItems[index];
+          const item = itemCatalog[data.itemId];
+          const state = getState(data.itemId);
+
+          document.getElementById(`hero-brand-${index}`).innerHTML = iconSvg[activeMode];
+          document.getElementById(`hero-kicker-${index}`).textContent = data.kicker;
+          document.getElementById(`hero-title-${index}`).innerHTML = data.title;
+          document.getElementById(`hero-desc-${index}`).textContent = data.desc;
+          const cta = document.getElementById(`hero-cta-${index}`);
+          cta.textContent = `${actionLabel[item.mode][state]}  →`;
+          cta.dataset.actionItem = data.itemId;
+          const img = document.getElementById(`hero-img-${index}`);
+          img.src = data.img;
+          img.alt = `${item.title} 插画`;
+          const progress = slide.querySelector(".hero-progress");
+          if (progress) progress.textContent = `${index + 1} / 3`;
+        });
+      };
+
+      const renderHero = (nextIndex, direction = 1) => {
+        if (!slides.length || nextIndex === heroIndex) return;
+        const current = slides[heroIndex];
+        const next = slides[nextIndex];
+        current.classList.add("is-leaving");
+        current.classList.remove("is-active");
+        next.style.transform = `translateX(${direction > 0 ? 18 : -18}px) scale(.992)`;
+        requestAnimationFrame(() => {
+          next.classList.add("is-active");
+          next.style.transform = "";
+        });
+        window.setTimeout(() => current.classList.remove("is-leaving"), 760);
+        dots.forEach((dot, index) => dot.classList.toggle("is-active", index === nextIndex));
+        heroIndex = nextIndex;
+      };
+
+      const stopHero = () => {
+        if (heroTimer) window.clearInterval(heroTimer);
+        heroTimer = null;
+      };
+      const startHero = () => {
+        stopHero();
+        heroTimer = window.setInterval(() => renderHero((heroIndex + 1) % slides.length, 1), 5000);
+      };
+      const resetHero = () => {
+        stopHero();
+        slides.forEach((slide, index) => {
+          slide.classList.toggle("is-active", index === 0);
+          slide.classList.remove("is-leaving");
+          slide.style.transform = "";
+        });
+        dots.forEach((dot, index) => dot.classList.toggle("is-active", index === 0));
+        heroIndex = 0;
+        updateHeroContent();
+        startHero();
+      };
+
+      dots.forEach((dot, index) => dot.addEventListener("click", () => {
+        renderHero(index, index >= heroIndex ? 1 : -1);
+        startHero();
+      }));
+
+      carousel?.addEventListener("touchstart", event => {
+        touchStartX = event.touches[0].clientX;
+        touchDeltaX = 0;
+        stopHero();
+      }, { passive: true });
+      carousel?.addEventListener("touchmove", event => {
+        touchDeltaX = event.touches[0].clientX - touchStartX;
+      }, { passive: true });
+      carousel?.addEventListener("touchend", () => {
+        if (Math.abs(touchDeltaX) > 42) {
+          renderHero(
+            touchDeltaX < 0 ? (heroIndex + 1) % slides.length : (heroIndex - 1 + slides.length) % slides.length,
+            touchDeltaX < 0 ? 1 : -1
+          );
+        }
+        startHero();
+      });
+
+      document.addEventListener("visibilitychange", () => {
+        document.hidden ? stopHero() : startHero();
+      });
+
+      // Hero CTA opens actual state sheet
+      document.querySelectorAll(".hero-cta").forEach(btn => {
+        btn.addEventListener("click", () => renderSheet(btn.dataset.actionItem));
+      });
+
+      // ---------------------------
+      // Tabs / content mode
+      // ---------------------------
+      const modeButtons = Array.from(document.querySelectorAll(".mode"));
+      const contextCopy = document.getElementById("mode-context-copy");
+      const contextCount = document.getElementById("mode-context-count");
+
+      const quickSlots = [
         {
-          title: document.getElementById('course-title-1'),
-          desc: document.getElementById('course-desc-1')
+          card:document.getElementById("quick-card-a"),
+          status:document.getElementById("quick-status-a"),
+          kicker:document.getElementById("quick-kicker-a"),
+          title:document.getElementById("quick-title-a"),
+          desc:document.getElementById("quick-desc-a"),
+          link:document.getElementById("quick-link-a")
         },
         {
-          title: document.getElementById('course-title-2'),
-          desc: document.getElementById('course-desc-2')
-        },
-        {
-          title: document.getElementById('course-title-3'),
-          desc: document.getElementById('course-desc-3')
+          card:document.getElementById("quick-card-b"),
+          status:document.getElementById("quick-status-b"),
+          kicker:document.getElementById("quick-kicker-b"),
+          title:document.getElementById("quick-title-b"),
+          desc:document.getElementById("quick-desc-b"),
+          link:document.getElementById("quick-link-b")
         }
       ];
 
-      const applyMode = mode => {
-        const data = modeData[mode];
-        if (!data) return;
+      const courseSlots = [1,2,3].map(i => ({
+        row:document.getElementById(`course-row-${i}`),
+        title:document.getElementById(`course-title-${i}`),
+        desc:document.getElementById(`course-desc-${i}`)
+      }));
 
+      const quickKicker = {
+        tech:["CONTINUE","SOURCE READING"],
+        project:["CURRENT PROJECT","NEXT TASK"],
+        interview:["TODAY","PROJECT STORY"]
+      };
+
+      const quickExtra = {
+        "tech-python-hash":"约 18 min",
+        "tech-agent-source":"上次",
+        "project-platform":"当前",
+        "project-audit-window":"下一步",
+        "interview-questions":"8 题",
+        "interview-story":"Story"
+      };
+
+      const renderModeContent = () => {
+        const data = modeData[activeMode];
         modeButtons.forEach(button => {
-          const active = button.dataset.mode === mode;
-          button.classList.toggle('is-active', active);
-          button.setAttribute('aria-selected', active ? 'true' : 'false');
+          const active = button.dataset.mode === activeMode;
+          button.classList.toggle("is-active", active);
+          button.setAttribute("aria-selected", active ? "true" : "false");
+        });
+        contextCopy.innerHTML = data.context;
+        contextCount.textContent = data.count;
+
+        data.quick.forEach((itemId, index) => {
+          const item = itemCatalog[itemId];
+          const slot = quickSlots[index];
+          const state = getState(itemId);
+          slot.card.dataset.itemId = itemId;
+          slot.link.dataset.itemId = itemId;
+          slot.status.textContent = state === "new" ? quickExtra[itemId] : stateLabel[state];
+          if (state === "in_progress" && quickExtra[itemId]) slot.status.textContent = quickExtra[itemId];
+          slot.kicker.textContent = quickKicker[activeMode][index];
+          slot.title.textContent = item.title;
+          slot.desc.textContent = item.meta[0] + " · " + item.meta[1];
+          slot.link.textContent = `${getAction(itemId)} →`;
         });
 
-        if (contextCopy) contextCopy.innerHTML = data.context;
-        if (contextCount) contextCount.textContent = data.count;
-
-        const [a, b] = data.quick;
-        if (quickEls.statusA) quickEls.statusA.textContent = a.status;
-        if (quickEls.kickerA) quickEls.kickerA.textContent = a.kicker;
-        if (quickEls.titleA) quickEls.titleA.textContent = a.title;
-        if (quickEls.descA) quickEls.descA.textContent = a.desc;
-        if (quickEls.linkA) quickEls.linkA.textContent = a.link;
-
-        if (quickEls.statusB) quickEls.statusB.textContent = b.status;
-        if (quickEls.kickerB) quickEls.kickerB.textContent = b.kicker;
-        if (quickEls.titleB) quickEls.titleB.textContent = b.title;
-        if (quickEls.descB) quickEls.descB.textContent = b.desc;
-        if (quickEls.linkB) quickEls.linkB.textContent = b.link;
-
-        data.courses.forEach((course, index) => {
-          const target = courseEls[index];
-          if (!target) return;
-          if (target.title) target.title.textContent = course[0];
-          if (target.desc) target.desc.textContent = course[1];
+        data.courses.forEach((itemId, index) => {
+          const item = itemCatalog[itemId];
+          const slot = courseSlots[index];
+          slot.row.dataset.itemId = itemId;
+          slot.title.textContent = item.title;
+          slot.desc.textContent = item.desc;
         });
 
-        // Tiny, functional feedback only — no decorative continuous motion.
-        const quickCards = document.querySelectorAll('.mini-card');
-        quickCards.forEach(card => {
-          card.animate(
-            [
-              { opacity: .82, transform: 'translateY(2px)' },
-              { opacity: 1, transform: 'translateY(0)' }
-            ],
-            { duration: 180, easing: 'ease-out' }
-          );
-        });
+        updateHeroContent();
       };
 
       modeButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          applyMode(button.dataset.mode);
+        button.addEventListener("click", () => {
+          activeMode = button.dataset.mode;
+          renderModeContent();
+          resetHero();
+          quickSlots.forEach(slot => slot.card.animate(
+            [{ opacity:.82, transform:"translateY(2px)" }, { opacity:1, transform:"translateY(0)" }],
+            { duration:180, easing:"ease-out" }
+          ));
         });
       });
 
-      applyMode('tech');
+      quickSlots.forEach(slot => {
+        slot.card.addEventListener("click", event => {
+          if (event.target.closest("a")) return;
+          renderSheet(slot.card.dataset.itemId);
+        });
+        slot.link.addEventListener("click", event => {
+          event.preventDefault();
+          renderSheet(slot.link.dataset.itemId);
+        });
+      });
 
-      // ----------------------------------------------------------
-      // ROADMAP RANGE FILTERS
-      // ----------------------------------------------------------
-      const roadmapViews = {
-        day: {
-          labels: ['09:00','11:00','13:00','15:00','17:00'],
-          bars: {
-            python:['0%','54%'],
-            agent:['18%','66%'],
-            semantic:['4%','42%'],
-            interview:['52%','44%']
-          }
-        },
-        week: {
-          labels: ['周一','周二','周三','周四','周五'],
-          bars: {
-            python:['0%','56%'],
-            agent:['16%','70%'],
-            semantic:['4%','46%'],
-            interview:['48%','48%']
-          }
-        },
-        month: {
-          labels: ['W1','W2','W3','W4','W5'],
-          bars: {
-            python:['0%','42%'],
-            agent:['22%','68%'],
-            semantic:['6%','54%'],
-            interview:['58%','38%']
-          }
-        },
-        year: {
-          labels: ['Q1','Q2','Q3','Q4','年度'],
-          bars: {
-            python:['0%','34%'],
-            agent:['18%','64%'],
-            semantic:['4%','48%'],
-            interview:['55%','41%']
-          }
+      courseSlots.forEach(slot => {
+        slot.row.addEventListener("click", event => {
+          event.preventDefault();
+          renderSheet(slot.row.dataset.itemId);
+        });
+      });
+
+      // View-all / manage / full-plan destinations
+      const viewAll = document.getElementById("quick-start-all");
+      viewAll?.addEventListener("click", event => {
+        event.preventDefault();
+        showToast(activeMode === "tech" ? "将进入：全部技术学习" :
+                  activeMode === "project" ? "将进入：全部项目任务" : "将进入：全部面试练习");
+      });
+      document.getElementById("course-manage")?.addEventListener("click", () => showToast("将进入：课程管理"));
+      document.querySelector(".roadmap-link")?.addEventListener("click", event => {
+        event.preventDefault();
+        showToast("将进入：完整 Roadmap");
+      });
+
+      // ---------------------------
+      // Roadmap
+      // ---------------------------
+      const roadmapIds = {
+        python:"road-python",
+        agent:"road-agent",
+        semantic:"road-semantic",
+        interview:"road-interview"
+      };
+      const roadmapBars = {};
+      Object.entries(roadmapIds).forEach(([task,itemId]) => {
+        const bar = document.querySelector(`.timeline-row[data-task="${task}"] .timeline-bar`);
+        if (bar) {
+          roadmapBars[task] = bar;
+          bar.dataset.itemId = itemId;
+          bar.addEventListener("click", () => renderSheet(itemId));
         }
+      });
+
+      const roadStyleByState = {
+        completed:["black","✓","完成"],
+        in_progress:["orange","▶","现在"],
+        review:["soft","•","复习"],
+        new:["blue","","下一步"]
       };
 
-      const rangeButtons = Array.from(document.querySelectorAll('.range-tab'));
-      const axisLabels = Array.from(document.querySelectorAll('.axis-labels span'));
-
-      rangeButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const view = roadmapViews[button.dataset.range];
-          if (!view) return;
-
-          rangeButtons.forEach(item => {
-            const active = item === button;
-            item.classList.toggle('is-active', active);
-            item.setAttribute('aria-selected', active ? 'true' : 'false');
-          });
-
-          axisLabels.forEach((label, index) => {
-            label.textContent = view.labels[index] || '';
-          });
-
-          Object.entries(view.bars).forEach(([task, position]) => {
-            const bar = document.querySelector(
-              `.timeline-row[data-task="${task}"] .timeline-bar`
-            );
-            if (!bar) return;
-            bar.style.setProperty('--left', position[0]);
-            bar.style.setProperty('--width', position[1]);
-          });
+      const renderRoadmapState = () => {
+        Object.entries(roadmapIds).forEach(([task,itemId]) => {
+          const bar = roadmapBars[task];
+          if (!bar) return;
+          const [klass, icon, meta] = roadStyleByState[getState(itemId)] || roadStyleByState.new;
+          bar.classList.remove("black","orange","blue","soft");
+          bar.classList.add(klass);
+          const stateEl = bar.querySelector(".bar-state");
+          const metaEl = bar.querySelector(".bar-meta");
+          if (stateEl) stateEl.textContent = icon;
+          if (metaEl) metaEl.textContent = meta;
         });
+      };
+
+      const roadmapViews = {
+        day:{
+          labels:["09:00","11:00","13:00","15:00","17:00"],
+          bars:{python:["0%","54%"],agent:["18%","66%"],semantic:["4%","42%"],interview:["52%","44%"]}
+        },
+        week:{
+          labels:["周一","周二","周三","周四","周五"],
+          bars:{python:["0%","56%"],agent:["16%","70%"],semantic:["4%","46%"],interview:["48%","48%"]}
+        },
+        month:{
+          labels:["W1","W2","W3","W4","W5"],
+          bars:{python:["0%","42%"],agent:["22%","68%"],semantic:["6%","54%"],interview:["58%","38%"]}
+        },
+        year:{
+          labels:["Q1","Q2","Q3","Q4","年度"],
+          bars:{python:["0%","34%"],agent:["18%","64%"],semantic:["4%","48%"],interview:["55%","41%"]}
+        }
+      };
+      const rangeButtons = Array.from(document.querySelectorAll(".range-tab"));
+      const axisLabels = Array.from(document.querySelectorAll(".axis-labels span"));
+      rangeButtons.forEach(button => button.addEventListener("click", () => {
+        const view = roadmapViews[button.dataset.range];
+        if (!view) return;
+        rangeButtons.forEach(item => {
+          const active = item === button;
+          item.classList.toggle("is-active", active);
+          item.setAttribute("aria-selected", active ? "true" : "false");
+        });
+        axisLabels.forEach((label,index) => label.textContent = view.labels[index] || "");
+        Object.entries(view.bars).forEach(([task,pos]) => {
+          const bar = roadmapBars[task];
+          if (!bar) return;
+          bar.style.setProperty("--left", pos[0]);
+          bar.style.setProperty("--width", pos[1]);
+        });
+      }));
+
+      // ---------------------------
+      // Bottom nav hide/show on scroll
+      // ---------------------------
+      const bottomNav = document.querySelector(".bottom-nav");
+      let lastY = window.scrollY;
+      let ticking = false;
+      window.addEventListener("scroll", () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const y = window.scrollY;
+          const delta = y - lastY;
+          if (y > 180 && delta > 7) bottomNav?.classList.add("is-hidden");
+          if (delta < -7 || y < 120) bottomNav?.classList.remove("is-hidden");
+          lastY = y;
+          ticking = false;
+        });
+      }, { passive:true });
+
+      // AI button
+      document.querySelector(".nav-ai")?.addEventListener("click", () => {
+        bottomNav?.classList.remove("is-hidden");
+        document.querySelector(".ai-strip")?.scrollIntoView({ behavior:"smooth", block:"center" });
       });
 
-      document.querySelectorAll('.timeline-bar').forEach(bar => {
-        bar.addEventListener('click', () => {
-          bar.animate(
-            [
-              { transform: 'scale(.99)' },
-              { transform: 'scale(1)' }
-            ],
-            { duration: 160, easing: 'ease-out' }
-          );
-        });
-      });
+      // final refresh helper
+      function refreshAll(){
+        renderModeContent();
+        renderRoadmapState();
+      }
+
+      renderModeContent();
+      renderRoadmapState();
+      resetHero();
     })();
   </script>
+
+  <div class="sheet-backdrop" id="sheet-backdrop" aria-hidden="true"></div>
+  <section class="action-sheet" id="action-sheet" aria-modal="true" role="dialog" aria-labelledby="sheet-title">
+    <div class="sheet-grab" aria-hidden="true"></div>
+    <button class="sheet-close" id="sheet-close" type="button" aria-label="关闭">×</button>
+    <div class="sheet-kicker" id="sheet-kicker">LEARNING ITEM</div>
+    <h2 class="sheet-title" id="sheet-title">学习内容</h2>
+    <p class="sheet-desc" id="sheet-desc"></p>
+    <div class="sheet-meta" id="sheet-meta"></div>
+    <div class="sheet-actions">
+      <button class="sheet-primary" id="sheet-primary" type="button">开始学习</button>
+      <button class="sheet-secondary" id="sheet-secondary" type="button">标记完成</button>
+    </div>
+  </section>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 </body>
 </html>
